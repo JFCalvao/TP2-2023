@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/estiloLogin.css" type="text/css" />
+    <title>Shield Hero</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="info-lateral">
+        <div class="titulo">
+          <h1>
+            Inscreva-se
+          </h1>
+        </div>
+      </div>
+      <button class="img-central">
+        <img src="imagens/White-Arrow.png">
+      </button>
+      <div id="formPost" class="form disableForm">
+        <form action="">
+          <div class="form-header">
+            <h1>SIGNUP</h1>
+          </div>
+          <div class="inputs">
+            <div class="input-box">
+              <label for="input-usuario_cadastro">Usuario</label>
+              <input type="text" name="input-usuario_cadastro" id="input-usuario_cadastro" maxlength="40" placeholder="User name..." required>
+            </div>
+            
+            <div class="input-box">
+              <label for="input-password_cadastro">Senha</label>
+              <input type="password" name="input-password_cadastro" id="input-password_cadastro" minlength="4" maxlength="20" placeholder="Password..." required>
+            </div>
+  
+            <div class="input-box">
+              <label for="input-confirm-password">Confirme a senha</label>
+              <input type="password" name="input-confirm-password" id="input-confirm-password" minlength="4" maxlength="20" placeholder="Confirm new password..." required>
+            </div>
+            
+          </div>
+          <div class="login-button">
+            <button id="get-btn" type="submit">SignUp</button>
+          </div>
+        </form>
+      </div>
+      <div id="formGet" class="form">
+        <form action="https://api.sheetmonkey.io/form/bu8BYPeigNNqfjnbJFuEiH" method="post" data-form>
+          <div class="form-header">
+            <h1>LOGIN</h1>
+          </div>
+          <div class="inputs">
+            <div class="input-box">
+              <label for="input-usuario">Usuario</label>
+              <input type="text" name="input-usuario" id="input-usuario" maxlength="40" placeholder="New user name..." required>
+            </div>
+            
+            <div class="input-box">
+              <label for="input-password">Senha</label>
+              <input type="password" name="input-password" id="input-password" minlength="4" maxlength="20" placeholder="New password..." required>
+            </div>
+            
+          </div>
+          <div class="login-button">
+            <button id="submit-btn" type="submit" data-button>Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="js/login.js"></script>
+  </body>
+</html>
