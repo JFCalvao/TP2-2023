@@ -26,6 +26,7 @@ const img_perfil = document.querySelector("#imagem-do-Perfil");
 const account_img_perfil = document.querySelector("#account-imagem-do-Perfil");
 const account_moldura = document.querySelector("#account-moldura");
 const account_sem_moldura = document.querySelector("#sem-moldura");
+const personagem = document.querySelector("#personagem");
 const account_personagem = document.querySelector("#account-personagem");
 const btn_play = document.querySelector(".play");
 const userName = document.querySelector("#nome-usuario");
@@ -44,7 +45,7 @@ const personagem_slider = document.querySelector("#personagem-slider");
 const perfilLiPersonagem = document.querySelectorAll("#imgs-personagem li");
 const perfilImgsPersonagem = document.querySelectorAll(
   "#imgs-personagem li img"
-);
+  );
 const moldura = document.querySelector("#moldura");
 
 // coisas para inicializar
@@ -61,7 +62,7 @@ function procuraUser() {
     let encontrado = 0;
     let SHEET_ID = "1gEByqXEKcDELbHz8yWlGtUTfmEzRALi6sDJrdfgULOI";
     let SHEET_TITLE = "Página1";
-    let SHEET_RANGE = "A:G";
+    let SHEET_RANGE = "A:H";
 
     let FULL_URL =
       "https://docs.google.com/spreadsheets/d/" +
@@ -111,9 +112,11 @@ function procuraUser() {
           statusPersonagem.vida = listaData.table.rows[localProcurar].c[5].v;
           userName.innerHTML = listaData.table.rows[localProcurar].c[0].v;
           moldura.src = listaData.table.rows[localProcurar].c[6].v;
+          personagem.src = listaData.table.rows[localProcurar].c[7].v;
 
           //edit perfil
           account_moldura.src = moldura.src;
+          account_personagem.src = personagem.src;
 
           iniciaPerfil();
           log_h1.innerHTML = "LOGADO";
@@ -144,6 +147,7 @@ function iniciaPerfil() {
       aumento2 *= 10;
     }
   }
+  localStorage.setItem("PERSONAGEM",personagem.src);
   rank.style.width = `${statusPersonagem.rankExp / (expMaxRank / 100)}%`;
   h2_rank.innerHTML = statusPersonagem.rankExp + "/" + expMaxRank;
   log_h1.innerHTML = "DESLOGADO";
@@ -350,32 +354,33 @@ btn_play.addEventListener("click", function () {
     return;
   }
 
-  statusPersonagem.rankExp += 100;
+  window.location = "../jogoBase/index.html";
+  // statusPersonagem.rankExp += 100;
 
-  if (statusPersonagem.rankExp >= expMaxRank) {
-    statusPersonagem.nivelRank++;
-    statusPersonagem.rankExp = statusPersonagem.rankExp - expMaxRank;
-  }
-  var xml = new XMLHttpRequest();
-  var data = JSON.stringify({
-    NIVEL_RANK: statusPersonagem.nivelRank,
-    EXP_RANK: statusPersonagem.rankExp,
-  });
-  xml.open(
-    "PATCH",
-    "https://sheetdb.io/api/v1/pfuk22g9ujmao/USUARIO/" +
-      localStorage.getItem("USUARIO"),
-    true
-  );
-  xml.setRequestHeader("Content-type", "application/json");
-  xml.setRequestHeader("Accept", "application/json");
-  xml.onreadystatechange = function () {
-    if (xml.readyState === 4 && xml.status === 200) {
-      alert(xml.responseText);
-      procuraUser();
-    }
-  };
-  xml.send(data);
+  // if (statusPersonagem.rankExp >= expMaxRank) {
+  //   statusPersonagem.nivelRank++;
+  //   statusPersonagem.rankExp = statusPersonagem.rankExp - expMaxRank;
+  // }
+  // var xml = new XMLHttpRequest();
+  // var data = JSON.stringify({
+  //   NIVEL_RANK: statusPersonagem.nivelRank,
+  //   EXP_RANK: statusPersonagem.rankExp,
+  // });
+  // xml.open(
+  //   "PATCH",
+  //   "https://sheetdb.io/api/v1/pfuk22g9ujmao/USUARIO/" +
+  //     localStorage.getItem("USUARIO"),
+  //   true
+  // );
+  // xml.setRequestHeader("Content-type", "application/json");
+  // xml.setRequestHeader("Accept", "application/json");
+  // xml.onreadystatechange = function () {
+  //   if (xml.readyState === 4 && xml.status === 200) {
+  //     alert(xml.responseText);
+  //     procuraUser();
+  //   }
+  // };
+  // xml.send(data);
 });
 
 const ocupaBotaoCarrinho = document.querySelector("#ocupa-botao-carrinho");
@@ -438,6 +443,7 @@ ocupaBotaoCarrinho.addEventListener("click", () => {
   desabilitar = true;
 });
 
+const mensagem = document.querySelector("#mensagem");
 let perfilURL = "nada";
 btn_salvarEdit.addEventListener("click", () => {
   if(!localStorage.getItem("USUARIO")) {
@@ -445,17 +451,19 @@ btn_salvarEdit.addEventListener("click", () => {
     return;
   }
 
-  if((moldura.src === account_moldura.src) && (img_perfil.src === account_img_perfil.src)) {
+
+  if((moldura.src === account_moldura.src) && (img_perfil.src === account_img_perfil.src) && (personagem.src === account_personagem.src)) {
     return;
   }
 
   if(perfilURL !== "nada") {
     localStorage.setItem("URL", perfilURL);
     img_perfil.src = perfilURL;
-    if(moldura.src !== account_moldura.src) {
+    if(moldura.src !== account_moldura.src || personagem.src !== account_personagem.src) {
       var xml = new XMLHttpRequest();
       var data = JSON.stringify({
         MOLDURA: account_moldura.src,
+        PERSONAGEM: account_personagem.src,
       });
       xml.open(
         "PATCH",
@@ -467,7 +475,9 @@ btn_salvarEdit.addEventListener("click", () => {
       xml.setRequestHeader("Accept", "application/json");
       xml.onreadystatechange = function () {
         if (xml.readyState === 4 && xml.status === 200) {
-          alert(xml.responseText);
+          if(mensagem.value !== "" && mensagem.value !== " ") {
+            alert(mensagem.value);
+          }
           procuraUser();
         }
       };
@@ -482,6 +492,7 @@ btn_salvarEdit.addEventListener("click", () => {
   var data = JSON.stringify({
     FOTO_PERFIL: account_img_perfil.src,
     MOLDURA: account_moldura.src,
+    PERSONAGEM: account_personagem.src,
   });
   xml.open(
     "PATCH",
@@ -493,7 +504,9 @@ btn_salvarEdit.addEventListener("click", () => {
   xml.setRequestHeader("Accept", "application/json");
   xml.onreadystatechange = function () {
     if (xml.readyState === 4 && xml.status === 200) {
-      alert(xml.responseText);
+      if(mensagem.value !== "" && mensagem.value !== " ") {
+        alert(mensagem.value);
+      }
       procuraUser();
     }
   };
@@ -504,6 +517,7 @@ btn_cancelarEdit.addEventListener("click", () => {
   account_moldura.src = moldura.src;
   account_moldura.style.height = `${account_moldura.clientWidth}px`;
   account_img_perfil.src = img_perfil.src;
+  mensagem.value = "";
 });
 
 const inputFile = document.querySelector("#inputFile");

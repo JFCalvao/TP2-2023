@@ -142,6 +142,7 @@ function cadastraUser() {
       EXP_RANK: "0",
       VIDA: "200",
       MOLDURA: "../imagens/imagem-sem-nada.webp",
+      PERSONAGEM: "..imgs-personagem/bolafumante.png",
     }),
     });
     logarAutomaticamente(
@@ -149,38 +150,6 @@ function cadastraUser() {
       inputPassword_cadastro.value
     );
 }
-
-// const handleGet = (event) => {
-//     event.preventDefault();
-
-//     let SHEET_ID = "1gEByqXEKcDELbHz8yWlGtUTfmEzRALi6sDJrdfgULOI";
-//     let SHEET_TITLE = "TP2-dataBase";
-//     let SHEET_RANGE = "A:F";
-
-//     let FULL_URL =( "https://docs.google.com/spreadsheets/d/" + SHEET_ID + "/gviz/tq?sheet=" + SHEET_TITLE + "&range=" + SHEET_RANGE);
-
-//     fetch(FULL_URL)
-//     .then(res => res.text())
-//     .then(rep => {
-//         let data = JSON.parse(rep.substr(47).slice(0,-2));
-
-//         console.log(data.table.rows[1].c);
-
-//         data.table.rows.forEach(row => {
-//             console.log(row.c[0].v === inputUsuario1.value);
-//             console.log(row.c[1].v === inputPassword1.value);
-//             console.log(row.c[1].v);
-//             if(row.c[0].v === inputUsuario1.value) {
-//                 if(row.c[1].v === inputPassword1.value)
-//                 {
-//                     console.log("Pode logar");
-//                 }
-//             }
-//         })
-
-//     });
-
-// }
 
 let encontrado = 0;
 

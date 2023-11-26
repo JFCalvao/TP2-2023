@@ -12,7 +12,7 @@ app.renderer.view.style.position = 'absolute';
 
 document.body.appendChild(app.view)
 
-const player = PIXI.Sprite.from('images/bolafumante.png');
+const player = PIXI.Sprite.from(localStorage.getItem("PERSONAGEM"));
 const shield = PIXI.Sprite.from('images/shieldTeste.png');
 
 app.stage.addChild(player);
