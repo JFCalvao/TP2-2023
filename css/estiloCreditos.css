@@ -25,7 +25,7 @@ h1 {
 .div-imgRetorno {
     position: absolute;
     top: 1vh;
-    left: 1vh;
+    left: 3vh;
     height: 8vh;
     width: 8vh;
     background: url("../imagens/botaoRetornar.png");
@@ -33,6 +33,10 @@ h1 {
     background-size: contain;
     background-position: center center;
     border-radius: 1.2rem;
+    -webkit-transition: transform 0.5s ease;
+    -moz-transition: transform 0.5s ease;
+    -o-transition: transform 0.5s ease;
+    transition: transform 0.5s ease;
 }
 
 content {
@@ -44,6 +48,14 @@ content {
     align-content: center;
 }
 
+.cards {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-content: center;
+    width: 90%;
+}
+
 .card {
     width: 50vh;
     height: 70vh;
@@ -52,8 +64,8 @@ content {
 .card-base {
     width: 100%;
     height: 100%;
-    background-color: #72E685;
-    border-radius: 1.4rem;
+    background: linear-gradient(90deg, #2E2840 50%, #72E685 50%);
+    border-radius: 2rem;
     display: grid;
     grid-template-rows: 50% 50%;
     grid-template-columns: auto;
@@ -62,8 +74,164 @@ content {
 
 .card-img {
     grid-row: 1/1;
-    background-color: #2E2840;
+    /* background-color: #72E685; */
+    background: linear-gradient(135deg, #19db3a, #3ae757, #72E685);
     width: 100%;
     height: 100%;
-    border-radius: 1.2rem;
+    border-radius: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card-img img {
+    border-radius: 50%;
+    width: 50%;
+    padding: 4px;
+    border: 0.4rem solid #EAE8E5;
+    pointer-events: none;
+    user-select: none;
+}
+
+.card-info {
+    grid-row: 2/2;
+    width: 100%;
+    height: 100%;
+    background-color: #2E2840;
+    border-radius: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+}
+
+.card-info p {
+    padding: 1.2rem;
+    font-family: sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #EAE8E5;
+}
+
+.infoGraphs {
+    width: 20%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+}
+
+.graphs {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.info {
+    height: 25%;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    overflow: hidden;
+}
+
+.range {
+    height: 25vh;
+    width: 25vh;
+    margin-top: 65%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 15px black;
+}
+
+#rangeHTML::before {
+    content: "";
+    background-image: conic-gradient(
+        #c4c3c3a8 50%,
+        rgb(252,98,81) 50%
+    );
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+}
+
+#rangeCSS::before {
+    /* transform: rotate(-87deg); */
+    content: "";
+    background-image: conic-gradient(
+        #c4c3c3a8 50%,
+        rgb(103,148,233) 50%
+    );
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+}
+
+#rangeJS::before {
+    /* transform: rotate(-87deg); */
+    content: "";
+    background-image: conic-gradient(
+        #c4c3c3a8 50%,
+        rgb(255,193,7) 50%
+    );
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.range::after {
+    content: "";
+    width: 85%;
+    height: 85%;
+    position: absolute;
+    background-color: rgb(32, 27, 44);
+    border-radius: 50%;
+    box-shadow: 0 0px 10px black;
+}
+
+.rangeName {
+    position: absolute;
+    font-size: 2.5rem;
+    font-weight: 600;
+    font-family: sans-serif;
+    align-self: flex-start;
+    margin: 0;
+}
+
+.rangePorcentagem {
+    position: absolute;
+    font-size: 2.5rem;
+    font-weight: 600;
+    font-family: sans-serif;
+    align-self: flex-end;
+    margin: 0;
+    color: #EAE8E5;
+}
+
+#nameHTML {
+    color: rgb(253, 87, 68);
+}
+
+#nameCSS {
+    color: rgb(85, 137, 235);
+}
+
+#nameJS {
+    color: rgb(255, 230, 7);
 }
