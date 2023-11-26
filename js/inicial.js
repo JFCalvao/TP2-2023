@@ -354,7 +354,7 @@ btn_play.addEventListener("click", function () {
     return;
   }
 
-  window.location = "../jogoBase/index.html";
+  window.location = "index.html";
   // statusPersonagem.rankExp += 100;
 
   // if (statusPersonagem.rankExp >= expMaxRank) {

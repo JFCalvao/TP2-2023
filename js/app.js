@@ -14,7 +14,7 @@ document.body.appendChild(app.view)
 
 //adicao do player e do escudo no cenarios
 
-const player = PIXI.Sprite.from('../imagens/bolafumante.png');
+const player = PIXI.Sprite.from(localStorage.getItem("PERSONAGEM"));
 const shield = PIXI.Sprite.from('../imagens/shield.png');
 
 app.stage.addChild(player);
