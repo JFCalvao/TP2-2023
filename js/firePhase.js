@@ -17,12 +17,26 @@ document.body.appendChild(app.view);
 const player = PIXI.Sprite.from(localStorage.getItem("PERSONAGEM"));
 const shield = PIXI.Sprite.from("imagens/shield.png");
 const background = PIXI.Sprite.from("imagens/firebackground.png");
-// const backgroundFilter = new Graphics();
 
-// backgroundFilter.beginFill('grey')
-// .drawRect(0, 0, screen.width, screen.height)
-// .alpha(0.4)
-// .endFill;
+//adicao de sons
+
+const shieldhitSound = new Howl({
+  src: ['sons/hitSound.wav'],
+  autoplay: true
+});
+
+const playerhitSound = new Howl({
+  src: ['sons/somDeMorte.wav'],
+  autoplay: true
+});
+
+
+  // const backgroundFilter = new Graphics();
+
+  // backgroundFilter.beginFill('grey')
+  // .drawRect(0, 0, screen.width, screen.height)
+  // .alpha(0.4)
+  // .endFill;
 
 app.stage.addChild(background);
 //app.stage.addChild(backgroundFilter);
@@ -71,7 +85,7 @@ document.addEventListener("keydown", (e) => {
 
 //o que decide em quanto tempo sera spawnada o projetil
 
-setInterval(createFireball, 300);
+setInterval(createFireball, 200);
 
 //spawna o projetil
 
@@ -79,6 +93,7 @@ function createFireball() {
   const fireball = PIXI.Sprite.from("imagens/bolaDeFogo.png");
   fireball.cont = 0;
   fireball.hitMark = 1;
+  fireball.sound = 1;
   fireball.anchor.set(0.5);
   fireball.scale.set(0.5, 0.5);
   let direcao = decisaoDeSpawn(fireball);
@@ -142,13 +157,19 @@ function gameLoop(delta, fireball, direcao) {
   if (colisao(shield, fireball)) {
     app.stage.removeChild(fireball);
     fireball.hitMark = 0;
+    
+    if(fireball.sound == 1) {
+      shieldhitSound.play();
+      fireball.sound = 0;
+    }
   }
 
   if (colisao(player, fireball)) {
     app.stage.removeChild(fireball);
     if (fireball.cont == 0 && fireball.hitMark == 1) {
-      // window.alert("hit!");
       fireball.cont++;
+      fireball.sound = 0;
+      playerhitSound.play();
     }
   }
 }
