@@ -23,11 +23,9 @@ body {
 .div-imgRetorno {
   position: absolute;
   top: 10vh;
-  left: 20vw;
+  left: 40vh;
   height: 8vh;
   width: 8vh;
-  min-height: 4rem;
-  min-width: 4rem;
   background: url("../imagens/botaoRetornar.png");
   background-repeat: no-repeat;
   background-size: contain;

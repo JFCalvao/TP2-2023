@@ -27,6 +27,7 @@ const account_img_perfil = document.querySelector("#account-imagem-do-Perfil");
 const account_moldura = document.querySelector("#account-moldura");
 const account_sem_moldura = document.querySelector("#sem-moldura");
 const personagem = document.querySelector("#personagem");
+const basePersonagem = document.querySelector(".base");
 const account_personagem = document.querySelector("#account-personagem");
 const btn_play = document.querySelector(".play");
 const userName = document.querySelector("#nome-usuario");
@@ -292,6 +293,8 @@ function temaClaro() {
   rank_life[1].style.color = "black";
   titulo_Game.style.color = "#081930";
   html_body.style.backgroundImage = "url(imagens/dia-papel_de_parede.gif)";
+  basePersonagem.style.border = "3px solid #22ff00";
+  basePersonagem.style.boxShadow = "0px 5px 15px #22ff00";
   menu_options.forEach((element) => {
     element.style.color = "#4ed638";
     element.style.webkitTextStroke = "3px #339c23";
@@ -323,6 +326,8 @@ function temaEscuro() {
   rank_life[1].style.color = "white";
   titulo_Game.style.color = "#FAFF00";
   html_body.style.backgroundImage = "url(imagens/noite-papel_de_parede.gif)";
+  basePersonagem.style.border = "3px solid #cdcdcd";
+  basePersonagem.style.boxShadow = "0px 5px 15px #cdcdcd";
   menu_options.forEach((element) => {
     element.style.color = "#ffffff";
     element.style.webkitTextStroke = "3px #8b8b8b";
