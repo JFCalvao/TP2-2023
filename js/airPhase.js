@@ -85,10 +85,10 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-let setIntervalId;
+let intervaloAttack;
 
 function createMenu() {
-  clearInterval(setIntervalId);
+  clearInterval(intervaloAttack);
   player.health = 3;
   const backgroundFilter = new Graphics();
   backgroundFilter.beginFill('rgba(23, 23, 23, 0.74)')
