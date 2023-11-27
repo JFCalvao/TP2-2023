@@ -76,7 +76,7 @@ setInterval(createFireball, 300);
 //spawna o projetil
 
 function createFireball() {
-  const fireball = PIXI.Sprite.from("imagens/fireball.png");
+  const fireball = PIXI.Sprite.from("imagens/bolaDeFogo.png");
   fireball.cont = 0;
   fireball.hitMark = 1;
   fireball.anchor.set(0.5);
@@ -147,7 +147,7 @@ function gameLoop(delta, fireball, direcao) {
   if (colisao(player, fireball)) {
     app.stage.removeChild(fireball);
     if (fireball.cont == 0 && fireball.hitMark == 1) {
-      window.alert("hit!");
+      // window.alert("hit!");
       fireball.cont++;
     }
   }
