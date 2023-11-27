@@ -750,6 +750,7 @@ input[type="range"] {
   width: 90%;
   height: 5.5rem;
 }
+
 .btns-editar-sair button {
   height: 100%;
   width: 45%;
@@ -792,7 +793,7 @@ input[type="range"] {
 }
 
 .btns-estilo button {
-  height: 7rem;
+  height: 100%;
   width: 45%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -817,6 +818,24 @@ input[type="range"] {
 @keyframes comprando {
   from{justify-content: flex-start;}
   to{justify-content: flex-end;}
+}
+
+@media (max-height: 1100px) {
+  .base {
+    bottom: 9%;
+  }
+}
+
+@media (max-height: 950px) {
+  .base {
+    bottom: 7%;
+  }
+}
+
+@media (max-height: 850px) {
+  .base {
+    bottom: 4%;
+  }
 }
 
 @media (max-height: 765px) {
@@ -849,20 +868,53 @@ input[type="range"] {
   }
 }
 
-@media (max-height: 1100px) {
-  .base {
-    bottom: 9%;
+@media (max-height: 700px) {
+  .container-account {
+    height: 30rem;
   }
-}
 
-@media (max-height: 950px) {
-  .base {
-    bottom: 7%;
+  .menu-settings {
+    height: 30rem;
+    top: 24%;
   }
-}
 
-@media (max-height: 850px) {
-  .base {
-    bottom: 4%;
+  .music label,
+  .vol label {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 2.5rem;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  .logado {
+    width: 90%;
+    height: 6rem;
+  }
+  
+  .logado h1 {
+    font-size: 2.5rem;
+  }
+
+  .btns-editar-sair {
+    height: 5rem;
+  }
+
+  .btns-estilo {
+    height: 6rem;
+  }
+
+  #comprar-carrinho {
+    height: 100%;
+  }
+
+  #div-inputFile label {
+    font-size: 1rem;
   }
 }
