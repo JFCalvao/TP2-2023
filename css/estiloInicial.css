@@ -870,11 +870,11 @@ input[type="range"] {
 
 @media (max-height: 700px) {
   .container-account {
-    height: 30rem;
+    height: 28rem;
   }
 
   .menu-settings {
-    height: 30rem;
+    height: 28rem;
     top: 24%;
   }
 
@@ -910,11 +910,80 @@ input[type="range"] {
     height: 6rem;
   }
 
+  
+  #div-inputFile label {
+    font-size: 1rem;
+  }
+  
   #comprar-carrinho {
+    height: 105%;
+  }
+
+  #ocupa-botao-carrinho {
+    height: 2rem;
+    width: 47%;
+  }
+
+  #carrinho-button {
+    font-size: 1rem;
+  }
+
+  #texto-div h4 {
+    font-size: 1rem;
+  }
+
+  #carrinho-container {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .contem-carrinho {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  #box2-personagem #mensagem {
+    height: 0.2rem;
+  }
+
+  .account-btns button {
+    height: 2.2rem;
+  }
+
+  .options-account {
     height: 100%;
   }
 
-  #div-inputFile label {
-    font-size: 1rem;
+  .imgs-container .slider {
+    width: 100%;
+    height: 0.5rem;
+    border-radius: 0%;
+    background: linear-gradient(90deg, #4B4848 100%, #4B4848 0%);
+    margin-bottom: 5%;
+  }
+  
+  .imgs-container .slider::-webkit-slider-runnable-track {
+    height: 0.5rem;
+    border-radius: 0%;
+  }
+  
+  .imgs-container .slider::-webkit-slider-thumb {
+    border-radius: 0%;
+    height: 0.5rem;
+    width: 10%;
+    background-color: #8B8B8B;
+  }
+
+  .bars {
+    width: 10rem;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+  }
+
+  .bars h2 {
+    top: auto;
+    align-self: center;
+    font-size: 1.2rem;
   }
 }

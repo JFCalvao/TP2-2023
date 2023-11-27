@@ -250,6 +250,12 @@ form {
   box-shadow: none;
 }
 
+@media screen and (max-height: 740px) {
+  #formPost {
+    overflow-y: scroll;
+  }
+}
+
 @media screen and (max-height: 590px) {
   .form {
     overflow-y: scroll;
