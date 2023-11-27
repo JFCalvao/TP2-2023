@@ -1,3 +1,4 @@
+const html_body = document.querySelector("body");
 const porcentagemHTML = document.querySelector("#porcentagemHTML");
 const porcentagemCSS = document.querySelector("#porcentagemCSS");
 const porcentagemJS = document.querySelector("#porcentagemJS");
@@ -79,4 +80,30 @@ btnRetornar.addEventListener("click", () => {
     setTimeout(() => {
         window.location = "index.html"
     }, 500);
+});
+
+const easterEgg = document.querySelector(".img-personagemEasteregg");
+
+easterEgg.addEventListener("click", () => {
+    easterEgg.style.opacity = "0%";
+
+    var data = JSON.stringify({
+        PERSONAGEM: "imgs-personagens/personagemBrasil.png",
+    });
+
+    let ajax = new XMLHttpRequest();
+
+    ajax.open("PATCH",
+      "https://sheetdb.io/api/v1/pfuk22g9ujmao/USUARIO/" +
+      localStorage.getItem("USUARIO"),
+      true
+    );
+    ajax.setRequestHeader("Content-Type", "application/json");
+    ajax.setRequestHeader("Accept", "application/json");
+    ajax.addEventListener("readystatechange", () => {
+        if(ajax.readyState === 4 && ajax.status === 200) {
+            alert("Parabéns!!! Você ganhou uma nova skin!!");
+        }
+    });
+    ajax.send(data);
 });

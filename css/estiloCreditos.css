@@ -22,6 +22,26 @@ h1 {
     margin: 0;
 }
 
+.img-personagemEasteregg {
+    position: absolute;
+    top: 2vh;
+    left: calc(11vh - 1rem);
+    transition: all 0.3s ease;
+    background: url("../imgs-personagens/personagemBrasil.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 2rem;
+    height: 2rem;
+}
+
+.img-personagemEasteregg:hover {
+    transform: rotate(45deg);
+    left: calc(11vh - 0.5rem);
+}
+.img-personagemEasteregg:active {
+    left: 12vh;
+}
+
 .div-imgRetorno {
     position: absolute;
     top: 1vh;
