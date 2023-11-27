@@ -142,7 +142,7 @@ function cadastraUser() {
       EXP_RANK: "0",
       VIDA: "200",
       MOLDURA: "../imagens/imagem-sem-nada.webp",
-      PERSONAGEM: "..imgs-personagem/bolafumante.png",
+      PERSONAGEM: "../imgs-personagens/bolafumante.png",
     }),
     });
     logarAutomaticamente(
