@@ -848,3 +848,21 @@ input[type="range"] {
     bottom: 1.5%;
   }
 }
+
+@media screen and (max-height: 1100px) {
+  .base {
+    bottom: 9%;
+  }
+}
+
+@media screen and (max-height: 950px) {
+  .base {
+    bottom: 7%;
+  }
+}
+
+@media screen and (max-height: 850px) {
+  .base {
+    bottom: 4%;
+  }
+}
