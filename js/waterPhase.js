@@ -18,6 +18,20 @@ const player = PIXI.Sprite.from(localStorage.getItem("PERSONAGEM"));
 const shield = PIXI.Sprite.from('imagens/shield.png');
 const background = PIXI.Sprite.from('imagens/waterbackground.png');
 
+//adicao de sons
+
+const shieldhitSound = new Howl({
+    src: ['sons/hitSound.wav'],
+    autoplay: true,
+    volume: (localStorage.getItem("VOLUME")/100),
+  });
+  
+  const playerhitSound = new Howl({
+    src: ['sons/somDeMorte.wav'],
+    autoplay: true,
+    volume: (localStorage.getItem("VOLUME")/100),
+  });
+
 app.stage.addChild(background);
 app.stage.addChild(player);
 app.stage.addChild(shield);
@@ -77,6 +91,7 @@ function createWaterball() {
     const waterball = PIXI.Sprite.from('imagens/waterball.png');
     waterball.cont = 0;
     waterball.hitMark = 1;
+    waterball.sound = 1;
     waterball.anchor.set(0.5);
     waterball.scale.set(0.5, 0.5);
     let direcao = decisaoDeSpawn(waterball);
@@ -132,11 +147,20 @@ function gameLoop(delta, waterball, direcao) {
         if(colisao(shield, waterball)) {
             app.stage.removeChild(waterball);
             waterball.hitMark = 0;
+
+            if(waterball.sound == 1) {
+                shieldhitSound.play();
+                waterball.sound = 0;
+            }
         }
         
         if(colisao(player, waterball)) {
             app.stage.removeChild(waterball);
-            if(waterball.cont == 0 && waterball.hitMark == 1) { console.log('hit!'); waterball.cont++; }
+            if(waterball.cont == 0 && waterball.hitMark == 1) {
+                waterball.cont++; 
+                waterball.sound = 0;
+                playerhitSound.play();
+            }
         }
 }
 

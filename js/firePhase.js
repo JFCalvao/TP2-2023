@@ -22,12 +22,14 @@ const background = PIXI.Sprite.from("imagens/firebackground.png");
 
 const shieldhitSound = new Howl({
   src: ['sons/hitSound.wav'],
-  autoplay: true
+  autoplay: true,
+  volume: (localStorage.getItem("VOLUME")/100),
 });
 
 const playerhitSound = new Howl({
   src: ['sons/somDeMorte.wav'],
-  autoplay: true
+  autoplay: true,
+  volume: (localStorage.getItem("VOLUME")/100),
 });
 
 

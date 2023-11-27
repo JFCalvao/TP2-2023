@@ -18,6 +18,20 @@ const player = PIXI.Sprite.from(localStorage.getItem("PERSONAGEM"));
 const shield = PIXI.Sprite.from('imagens/shield.png');
 const background = PIXI.Sprite.from('imagens/rockbackground.png');
 
+//adicao de sons
+
+const shieldhitSound = new Howl({
+    src: ['sons/hitSound.wav'],
+    autoplay: true,
+    volume: (localStorage.getItem("VOLUME")/100),
+  });
+  
+  const playerhitSound = new Howl({
+    src: ['sons/somDeMorte.wav'],
+    autoplay: true,
+    volume: (localStorage.getItem("VOLUME")/100),
+  });
+
 app.stage.addChild(background);
 app.stage.addChild(player);
 app.stage.addChild(shield);
@@ -77,6 +91,7 @@ function createRockball() {
     const rockball = PIXI.Sprite.from('imagens/rockball.png');
     rockball.cont = 0;
     rockball.hitMark = 1;
+    rockball.sound = 1;
     rockball.anchor.set(0.5);
     rockball.scale.set(0.3, 0.3);
     let direcao = decisaoDeSpawn(rockball);
@@ -132,11 +147,20 @@ function gameLoop(delta, rockball, direcao) {
         if(colisao(shield, rockball)) {
             app.stage.removeChild(rockball);
             rockball.hitMark = 0;
+
+            if(rockball.sound == 1) {
+                shieldhitSound.play();
+                rockball.sound = 0;
+            }
         }
         
         if(colisao(player, rockball)) {
             app.stage.removeChild(rockball);
-            if(rockball.cont == 0 && rockball.hitMark == 1) { console.log('hit!'); rockball.cont++; }
+            if(rockball.cont == 0 && rockball.hitMark == 1) { 
+                rockball.cont++; 
+                rockball.sound = 0;
+                playerhitSound.play();
+            }
         }
 }
 
