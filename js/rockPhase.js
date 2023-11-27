@@ -15,8 +15,8 @@ document.body.appendChild(app.view)
 //adicao do player e do escudo no cenarios
 
 const player = PIXI.Sprite.from(localStorage.getItem("PERSONAGEM"));
-const shield = PIXI.Sprite.from('../imagens/shield.png');
-const background = PIXI.Sprite.from('../imagens/rockbackground.png');
+const shield = PIXI.Sprite.from('imagens/shield.png');
+const background = PIXI.Sprite.from('imagens/rockbackground.png');
 
 app.stage.addChild(background);
 app.stage.addChild(player);
@@ -74,7 +74,7 @@ setInterval(createRockball, 400);
 //spawna o projetil
 
 function createRockball() {
-    const rockball = PIXI.Sprite.from('../imagens/rockball.png');
+    const rockball = PIXI.Sprite.from('imagens/rockball.png');
     rockball.cont = 0;
     rockball.hitMark = 1;
     rockball.anchor.set(0.5);

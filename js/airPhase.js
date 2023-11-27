@@ -15,8 +15,8 @@ document.body.appendChild(app.view);
 //adicao do player e do escudo no cenarios
 
 const player = PIXI.Sprite.from(localStorage.getItem("PERSONAGEM"));
-const shield = PIXI.Sprite.from("../imagens/shield.png");
-const background = PIXI.Sprite.from("../imagens/airbackground.jpg");
+const shield = PIXI.Sprite.from("imagens/shield.png");
+const background = PIXI.Sprite.from("imagens/airbackground.jpg");
 
 app.stage.addChild(background);
 app.stage.addChild(player);
@@ -68,7 +68,7 @@ setInterval(createAirball, 1000);
 //spawna o projetil
 
 function createAirball() {
-  const airball = PIXI.Sprite.from("../imagens/airball.png");
+  const airball = PIXI.Sprite.from("imagens/airball.png");
   airball.cont = 0;
   airball.hitMark = 1;
   airball.anchor.set(0.5);

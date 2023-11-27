@@ -15,8 +15,8 @@ document.body.appendChild(app.view)
 //adicao do player e do escudo no cenarios
 
 const player = PIXI.Sprite.from(localStorage.getItem("PERSONAGEM"));
-const shield = PIXI.Sprite.from('../imagens/shield.png');
-const background = PIXI.Sprite.from('../imagens/waterbackground.png');
+const shield = PIXI.Sprite.from('imagens/shield.png');
+const background = PIXI.Sprite.from('imagens/waterbackground.png');
 
 app.stage.addChild(background);
 app.stage.addChild(player);
@@ -74,7 +74,7 @@ setInterval(createWaterball, 250);
 //spawna o projetil
 
 function createWaterball() {
-    const waterball = PIXI.Sprite.from('../imagens/waterball.png');
+    const waterball = PIXI.Sprite.from('imagens/waterball.png');
     waterball.cont = 0;
     waterball.hitMark = 1;
     waterball.anchor.set(0.5);
