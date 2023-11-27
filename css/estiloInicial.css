@@ -819,7 +819,7 @@ input[type="range"] {
   to{justify-content: flex-end;}
 }
 
-@media screen and (max-height: 765px) {
+@media (max-height: 765px) {
   .container-account {
     height: 34rem;
   }
@@ -834,7 +834,7 @@ input[type="range"] {
   }
 }
 
-@media screen and (max-height: 740px) {
+@media (max-height: 740px) {
   .container-account {
     height: 32rem;
   }
@@ -849,19 +849,19 @@ input[type="range"] {
   }
 }
 
-@media screen and (max-height: 1100px) {
+@media (max-height: 1100px) {
   .base {
     bottom: 9%;
   }
 }
 
-@media screen and (max-height: 950px) {
+@media (max-height: 950px) {
   .base {
     bottom: 7%;
   }
 }
 
-@media screen and (max-height: 850px) {
+@media (max-height: 850px) {
   .base {
     bottom: 4%;
   }
