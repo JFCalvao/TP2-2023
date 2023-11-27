@@ -15,8 +15,8 @@ document.body.appendChild(app.view);
 //adicao do player e do escudo no cenarios
 
 const player = PIXI.Sprite.from(localStorage.getItem("PERSONAGEM"));
-const shield = PIXI.Sprite.from("../imagens/shield.png");
-const background = PIXI.Sprite.from("../imagens/firebackground.png");
+const shield = PIXI.Sprite.from("imagens/shield.png");
+const background = PIXI.Sprite.from("imagens/firebackground.png");
 // const backgroundFilter = new Graphics();
 
 // backgroundFilter.beginFill('grey')
@@ -76,7 +76,7 @@ setInterval(createFireball, 300);
 //spawna o projetil
 
 function createFireball() {
-  const fireball = PIXI.Sprite.from("../imagens/fireball.png");
+  const fireball = PIXI.Sprite.from("imagens/fireball.png");
   fireball.cont = 0;
   fireball.hitMark = 1;
   fireball.anchor.set(0.5);
