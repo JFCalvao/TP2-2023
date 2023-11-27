@@ -1,6 +1,10 @@
 const Application = PIXI.Application;
 const Graphics = PIXI.Graphics;
 
+const style = new PIXI.TextStyle({
+  fontFamily: 'Encode Sans',
+  fontSize: 48
+})
 const app = new Application({
   width: window.innerWidth,
   height: window.innerHeight,
@@ -75,11 +79,42 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-//o que decide em quanto tempo sera spawnada o projetil
+function createMenu() {
+  const backgroundFilter = new Graphics();
+  backgroundFilter.beginFill('rgba(23, 23, 23, 0.74)')
+  .drawRect(0, 0, screen.width, screen.height)
+  .endFill();
 
-setInterval(createAirball, 1000);
+  const playBtn = new Graphics();
+  playBtn.beginFill('rgba(128, 38, 0, 1)')
+  .lineStyle(4, 'rgba(71, 21, 0, 1)')
+  .drawRect(screen.width / 2.65, screen.height / 4.5, screen.width / 4, screen.height / 8)
+  .endFill();
+  
+  const menuBtn = new Graphics();
+  playBtn.beginFill('rgba(128, 38, 0, 1)')
+  .lineStyle(4, 'rgba(71, 21, 0, 1)')
+  .drawRect(screen.width / 2.65, screen.height / 2.5, screen.width / 4, screen.height / 8)
+  .endFill();
+  
+  const playText = new PIXI.Text('PLAY', style);
+  playText.x = screen.width / 3;
+  playText.y = screen.height / 3.9;
+  
+  const menuText = new PIXI.Text('RETURN TO MENU', style);
+  playText.x = screen.width / 2.2;
+  playText.y = screen.height / 3.9;
+  
+  app.stage.addChild(backgroundFilter);
+  app.stage.addChild(playBtn);
+  app.stage.addChild(menuBtn);
+  app.stage.addChild(playText);
+  app.stage.addChild(menuText);
+}
 
+// setInterval(createAirball, 1000);
 //spawna o projetil
+createMenu();
 
 function createAirball() {
   const airball = PIXI.Sprite.from("imagens/airball.png");
