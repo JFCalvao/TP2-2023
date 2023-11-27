@@ -1,10 +1,16 @@
 const Application = PIXI.Application;
 const Graphics = PIXI.Graphics;
 
-const style = new PIXI.TextStyle({
-  fontFamily: 'Encode Sans',
-  fontSize: 48
+const playStyle = new PIXI.TextStyle({
+  fontFamily: '\"Lucida Console\", Monaco, monospace',
+  fontSize: 90
 })
+
+const returnStyle = new PIXI.TextStyle({
+  fontFamily: '\"Lucida Console\", Monaco, monospace',
+  fontSize: 50
+})
+
 const app = new Application({
   width: window.innerWidth,
   height: window.innerHeight,
@@ -104,18 +110,18 @@ function createMenu() {
   .endFill();
   
   const menuBtn = new Graphics();
-  playBtn.beginFill('rgba(128, 38, 0, 1)')
+  menuBtn.beginFill('rgba(128, 38, 0, 1)')
   .lineStyle(4, 'rgba(71, 21, 0, 1)')
   .drawRect(screen.width / 2.65, screen.height / 2.5, screen.width / 4, screen.height / 8)
   .endFill();
   
-  const playText = new PIXI.Text('PLAY', style);
-  playText.x = screen.width / 3;
-  playText.y = screen.height / 3.9;
+  const playText = new PIXI.Text('PLAY', playStyle);
+  playText.x = screen.width / 2.29;
+  playText.y = screen.height / 4.1;
   
-  const menuText = new PIXI.Text('RETURN TO MENU', style);
-  playText.x = screen.width / 2.2;
-  playText.y = screen.height / 3.9;
+ const menuText = new PIXI.Text('RETURN TO MENU', returnStyle);
+ menuText.x = screen.width / 2.55;
+ menuText.y = screen.height / 2.28;
   
   app.stage.addChild(backgroundFilter);
   app.stage.addChild(playBtn);
