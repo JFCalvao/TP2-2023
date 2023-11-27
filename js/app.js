@@ -61,12 +61,14 @@ document.addEventListener('keydown', (e) => {
 
 //o que decide em quanto tempo sera spawnada o projetil
 
-setInterval(createFireball, 200);
+setInterval(createFireball, 300);
 
 //spawna o projetil
 
 function createFireball() {
     const fireball = PIXI.Sprite.from('../imagens/fireball.png');
+    fireball.cont = 0;
+    fireball.hitMark = 1;
     fireball.anchor.set(0.5);
     fireball.scale.set(0.5, 0.5);
     let direcao = decisaoDeSpawn(fireball);
@@ -118,13 +120,15 @@ function gameLoop(delta, fireball, direcao) {
         case 3:
             fireball.y -= 5; break;
         }
-        
+
         if(colisao(shield, fireball)) {
             app.stage.removeChild(fireball);
+            fireball.hitMark = 0;
         }
         
         if(colisao(player, fireball)) {
             app.stage.removeChild(fireball);
+            if(fireball.cont == 0 && fireball.hitMark == 1) { window.alert('hit!'); fireball.cont++; }
         }
 }
 
