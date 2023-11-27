@@ -145,6 +145,8 @@ function cadastraUser() {
       PERSONAGEM: "imgs-personagens/bolafumante.png",
     }),
     });
+    localStorage.setItem("VOLUME", "100");
+    localStorage.setItem("MUSICA", "100");
     logarAutomaticamente(
       inputUsuario_cadastro.value,
       inputPassword_cadastro.value
@@ -190,6 +192,7 @@ const getData = (event) => {
 
       if (encontrado === 0) {
         window.alert("Essa conta não existe!");
+        console.log(listaData.table.rows);
         inputPassword.value = "";
         return;
       } else if (encontrado === 1) {

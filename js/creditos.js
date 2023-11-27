@@ -86,7 +86,7 @@ const easterEgg = document.querySelector(".img-personagemEasteregg");
 
 easterEgg.addEventListener("click", () => {
     easterEgg.style.opacity = "0%";
-
+    localStorage.setItem("Brasil", "imgs-personagens/personagemBrasil.png");
     var data = JSON.stringify({
         PERSONAGEM: "imgs-personagens/personagemBrasil.png",
     });

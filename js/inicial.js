@@ -48,6 +48,7 @@ const perfilImgsPersonagem = document.querySelectorAll(
   "#imgs-personagem li img"
   );
 const moldura = document.querySelector("#moldura");
+let linkPuroPersonagem;
 
 // coisas para inicializar
 let statusPersonagem = {
@@ -114,7 +115,7 @@ function procuraUser() {
           userName.innerHTML = listaData.table.rows[localProcurar].c[0].v;
           moldura.src = listaData.table.rows[localProcurar].c[6].v;
           personagem.src = listaData.table.rows[localProcurar].c[7].v;
-
+          linkPuroPersonagem = listaData.table.rows[localProcurar].c[7].v;
           //edit perfil
           account_moldura.src = moldura.src;
           account_personagem.src = personagem.src;
@@ -150,6 +151,33 @@ function iniciaPerfil() {
   }
   localStorage.setItem("PERSONAGEM",personagem.src);
   rank.style.width = `${statusPersonagem.rankExp / (expMaxRank / 100)}%`;
+  if(localStorage.MUSICA) {
+    inputmusica.value = localStorage.getItem("MUSICA");
+    let color = inputmusica.value;
+    inputmusica.style.background =
+      "linear-gradient(90deg, #41b8d5 " + color + "% , #eae8e5 " + color + "%)";
+    porcentagem_musica.style.width = `${
+      (parseFloat(color) * 87.5) / 100 + 12.5
+    }%`;
+    h3_musica.innerHTML = color + "%";
+  }
+  if(localStorage.VOLUME) {
+    inputvolume.value = localStorage.getItem("VOLUME");
+    let color = inputvolume.value;
+    inputvolume.style.background =
+      "linear-gradient(90deg, #41b8d5 " + color + "% , #eae8e5 " + color + "%)";
+    porcentagem_volume.style.width = `${
+      (parseFloat(color) * 87.5) / 100 + 12.5
+    }%`;
+    h3_volume.innerHTML = color + "%";
+  }
+  if(linkPuroPersonagem === "imgs-personagens/personagemBrasil.png") {
+    localStorage.setItem("Brasil", linkPuroPersonagem);
+  }
+  console.log(linkPuroPersonagem);
+  if(localStorage.Brasil) {
+    perfilLiPersonagem[4].innerHTML = `<img src="${localStorage.getItem("Brasil")}" />`;
+  }
   h2_rank.innerHTML = statusPersonagem.rankExp + "/" + expMaxRank;
   log_h1.innerHTML = "DESLOGADO";
   logado.style.backgroundColor = "tomato";
@@ -179,6 +207,7 @@ settings.addEventListener("click", () => {
   }
 });
 
+let valMusicaAnterior = inputmusica.value;
 inputmusica.addEventListener("mousemove", () => {
   let color = inputmusica.value;
   inputmusica.style.background =
@@ -188,8 +217,13 @@ inputmusica.addEventListener("mousemove", () => {
   }%`;
   h3_musica.innerHTML = color + "%";
   //falta fazer algo com o valor desse input para mudar a musica
+  if(valMusicaAnterior !== inputmusica.value) {
+    localStorage.setItem("MUSICA",inputmusica.value);
+  }
+  valMusicaAnterior = inputmusica.value;
 });
 
+let valVolumeAnterior = inputvolume.value;
 inputvolume.addEventListener("mousemove", () => {
   let color = inputvolume.value;
   inputvolume.style.background =
@@ -200,6 +234,10 @@ inputvolume.addEventListener("mousemove", () => {
   h3_volume.innerHTML = color + "%";
 
   //falta fazer algo com o valor desse input para mudar o volume
+  if(valVolumeAnterior !== inputvolume.value) {
+    localStorage.setItem("VOLUME",inputvolume.value);
+  }
+  valVolumeAnterior = inputvolume.value;
 });
 
 let editar = 0;
