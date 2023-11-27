@@ -84,6 +84,7 @@ document.addEventListener("keydown", (e) => {
     shield.angle = 360;
   }
 });
+
 let intervaloAttack;
 function createMenu() {
   const backgroundFilter = new Graphics();
