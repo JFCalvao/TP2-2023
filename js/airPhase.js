@@ -84,7 +84,7 @@ document.addEventListener("keydown", (e) => {
     shield.angle = 360;
   }
 });
-
+let intervaloAttack;
 function createMenu() {
   const backgroundFilter = new Graphics();
   backgroundFilter.beginFill('rgba(23, 23, 23, 0.74)')
@@ -100,7 +100,12 @@ function createMenu() {
   playBtn.interactive = true;
   playBtn.buttonMode = true;
   playBtn.addEventListener("click", () => {
-    
+    app.stage.removeChild(backgroundFilter);
+    app.stage.removeChild(playBtn);
+    app.stage.removeChild(menuBtn);
+    app.stage.removeChild(playText);
+    app.stage.removeChild(menuText);
+    intervaloAttack = setInterval(createAirball, 1000);
   });
   
   const menuBtn = new Graphics();
@@ -215,6 +220,8 @@ function gameLoop(delta, airball, direcao) {
       airball.cont++;
       airball.sound = 0;
       playerhitSound.play();
+      clearInterval(intervaloAttack);
+      createMenu();
     }
   }
 }
