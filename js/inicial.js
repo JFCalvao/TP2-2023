@@ -439,6 +439,9 @@ ocupaBotaoCarrinho.addEventListener("mouseout", () => {
     texto.style.visibility = "hidden";
   }, 100);
   carrinhoContainer.style.width = "2.4rem";
+  if(html_body.clientHeight <= 700) {
+    carrinhoContainer.style.width = "2rem";
+  }
   ocupaBotaoCarrinho_div.innerHTML = "";
 });
 

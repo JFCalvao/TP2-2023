@@ -196,3 +196,9 @@ td, th {
     background-color: #EAE8E5;
     width: 0%;
 }
+
+@media screen and (max-height: 700px) {
+    .fixed {
+        top: calc(85.5vh + 0.5rem);
+    }
+}

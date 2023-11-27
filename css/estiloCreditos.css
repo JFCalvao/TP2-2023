@@ -238,3 +238,17 @@ content {
 #nameJS {
     color: rgb(255, 230, 7);
 }
+
+@media (max-height: 700px) {
+    .card-info p {
+        font-size: 1.2rem;
+    }
+
+    .rangeName {
+        font-size: 2rem;
+    }
+
+    .rangePorcentagem {
+        font-size: 2rem;
+    }
+}
