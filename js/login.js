@@ -137,12 +137,12 @@ function cadastraUser() {
     body: JSON.stringify({
       USUARIO: inputUsuario_cadastro.value,
       SENHA: inputPassword_cadastro.value,
-      FOTO_PERFIL: "../imagens/img-perfil.png",
+      FOTO_PERFIL: "imagens/img-perfil.png",
       NIVEL_RANK: "1",
       EXP_RANK: "0",
       VIDA: "200",
-      MOLDURA: "../imagens/imagem-sem-nada.webp",
-      PERSONAGEM: "../imgs-personagens/bolafumante.png",
+      MOLDURA: "imagens/imagem-sem-nada.webp",
+      PERSONAGEM: "imgs-personagens/bolafumante.png",
     }),
     });
     logarAutomaticamente(
