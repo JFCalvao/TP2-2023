@@ -85,7 +85,11 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+let setIntervalId;
+
 function createMenu() {
+  clearInterval(setIntervalId);
+  player.health = 3;
   const backgroundFilter = new Graphics();
   backgroundFilter.beginFill('rgba(23, 23, 23, 0.74)')
   .drawRect(0, 0, screen.width, screen.height)
@@ -96,12 +100,6 @@ function createMenu() {
   .lineStyle(4, 'rgba(71, 21, 0, 1)')
   .drawRect(screen.width / 2.65, screen.height / 4.5, screen.width / 4, screen.height / 8)
   .endFill();
-
-  playBtn.interactive = true;
-  playBtn.buttonMode = true;
-  playBtn.addEventListener("click", () => {
-    
-  });
   
   const menuBtn = new Graphics();
   menuBtn.beginFill('rgba(128, 38, 0, 1)')
@@ -114,28 +112,41 @@ function createMenu() {
   menuBtn.addEventListener("click", () => {
     window.location = "index.html";
   });
+
   
   const playText = new PIXI.Text('PLAY', playStyle);
   playText.x = screen.width / 2.29;
   playText.y = screen.height / 4.1;
   
- const menuText = new PIXI.Text('RETURN TO MENU', returnStyle);
- menuText.x = screen.width / 2.55;
- menuText.y = screen.height / 2.28;
+  const menuText = new PIXI.Text('RETURN TO MENU', returnStyle);
+  menuText.x = screen.width / 2.55;
+  menuText.y = screen.height / 2.28;
   
   app.stage.addChild(backgroundFilter);
   app.stage.addChild(playBtn);
   app.stage.addChild(menuBtn);
   app.stage.addChild(playText);
   app.stage.addChild(menuText);
+
+  playBtn.interactive = true;
+    playBtn.buttonMode = true;
+    playBtn.addEventListener("click", () => {
+      app.stage.removeChild(backgroundFilter);
+      app.stage.removeChild(playBtn);
+      app.stage.removeChild(menuBtn);
+      app.stage.removeChild(playText);
+      app.stage.removeChild(menuText);
+      setIntervalId = setInterval(createAirball, 1000);
+      player.health = 3;
+    });
 }
 
-// setInterval(createAirball, 1000);
 //spawna o projetil
 createMenu();
 
 function createAirball() {
   const airball = PIXI.Sprite.from("imagens/airball.png");
+  airball.dmg = 1;
   airball.cont = 0;
   airball.hitMark = 1;
   airball.sound = 1;
@@ -214,7 +225,12 @@ function gameLoop(delta, airball, direcao) {
     if (airball.cont == 0 && airball.hitMark == 1) {
       airball.cont++;
       airball.sound = 0;
+      player.health--;
       playerhitSound.play();
+
+      if(player.health <= 0) {
+        createMenu();
+      }
     }
   }
 }
