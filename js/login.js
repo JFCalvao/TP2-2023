@@ -201,3 +201,16 @@ const getData = (event) => {
 };
 
 document.querySelector("#formGet").addEventListener("submit", getData);
+
+const btnRetornar = document.querySelector(".div-imgRetorno");
+
+btnRetornar.addEventListener("click", () => {
+    btnRetornar.style.webkitTransform = "rotate(-360deg)";
+    btnRetornar.style.mozTransform = "rotate(-360deg)";
+    btnRetornar.style.msTransform = "rotate(-360deg)";
+    btnRetornar.style.oTransform = "rotate(-360deg)";
+    btnRetornar.style.transform = "rotate(-360deg)";
+    setTimeout(() => {
+        window.location = "paginaInicial.html"
+    }, 500);
+});

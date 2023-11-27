@@ -20,6 +20,26 @@ body {
   font-family: "inter", sans-serif;
 }
 
+.div-imgRetorno {
+  position: absolute;
+  top: 10vh;
+  left: 20vw;
+  height: 8vh;
+  width: 8vh;
+  min-height: 4rem;
+  min-width: 4rem;
+  background: url("../imagens/botaoRetornar.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  border-radius: 1.2rem;
+  -webkit-transition: transform 0.5s ease;
+  -moz-transition: transform 0.5s ease;
+  -o-transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+
 .container {
   width: 50%;
   height: 80vh;
@@ -243,6 +263,10 @@ form {
     position: relative;
     bottom: 15%;
   }
+
+  .div-imgRetorno {
+    left: 18vw;
+  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -261,6 +285,10 @@ form {
     left: 23%;
     width: 2.2rem;
   }
+
+  .div-imgRetorno {
+    left: 16vw;
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -277,5 +305,10 @@ form {
     left: 12.5%;
     position: static;
     width: 3rem;
+  }
+
+  .div-imgRetorno {
+    top: 2vh;
+    left: 10vw;
   }
 }
