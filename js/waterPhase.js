@@ -16,9 +16,17 @@ document.body.appendChild(app.view)
 
 const player = PIXI.Sprite.from(localStorage.getItem("PERSONAGEM"));
 const shield = PIXI.Sprite.from('../imagens/shield.png');
+const background = PIXI.Sprite.from('../imagens/waterbackground.png');
 
+app.stage.addChild(background);
 app.stage.addChild(player);
 app.stage.addChild(shield);
+
+background.anchor.set(0.5);
+background.scale.set(0.5, 0.5); 
+background.position.set(screen.width / 2, screen.height / 2)
+background.width = screen.width;
+background.height = screen.height;
 
 player.anchor.set(0.5);
 shield.anchor.set(0.5);
@@ -61,41 +69,41 @@ document.addEventListener('keydown', (e) => {
 
 //o que decide em quanto tempo sera spawnada o projetil
 
-setInterval(createFireball, 300);
+setInterval(createWaterball, 250);
 
 //spawna o projetil
 
-function createFireball() {
-    const fireball = PIXI.Sprite.from('../imagens/fireball.png');
-    fireball.cont = 0;
-    fireball.hitMark = 1;
-    fireball.anchor.set(0.5);
-    fireball.scale.set(0.5, 0.5);
-    let direcao = decisaoDeSpawn(fireball);
+function createWaterball() {
+    const waterball = PIXI.Sprite.from('../imagens/waterball.png');
+    waterball.cont = 0;
+    waterball.hitMark = 1;
+    waterball.anchor.set(0.5);
+    waterball.scale.set(0.5, 0.5);
+    let direcao = decisaoDeSpawn(waterball);
 
-    app.stage.addChild(fireball);
+    app.stage.addChild(waterball);
 
-    app.ticker.add(delta => gameLoop(delta, fireball, direcao))
+    app.ticker.add(delta => gameLoop(delta, waterball, direcao))
 }
 
 //spawna o projetil em um dos 4 lugares possiveis
 
-function decisaoDeSpawn(fireball) {
+function decisaoDeSpawn(waterball) {
     let decisor = getRndInteger(0, 4);
 
     switch (decisor) {
         case 0:
-        fireball.position.set(screen.width, screen.height / 2.3); 
-        fireball.angle = 360; break;
+        waterball.position.set(screen.width, screen.height / 2.3); 
+        waterball.angle = 90; break;
         case 1:
-        fireball.position.set(screen.width / 2, 0);
-        fireball.angle = 270; break;
+        waterball.position.set(screen.width / 2, 0);
+        waterball.angle = 360; break;
         case 2:
-        fireball.position.set(0, screen.height / 2.3);
-        fireball.angle = 180; break;
+        waterball.position.set(0, screen.height / 2.3);
+        waterball.angle = 270; break;
         case 3:
-        fireball.position.set(screen.width / 2, screen.height);
-        fireball.angle = 90; break;
+        waterball.position.set(screen.width / 2, screen.height);
+        waterball.angle = 180; break;
     }
 
     return decisor;
@@ -109,26 +117,26 @@ function getRndInteger(min, max) {
 
 //game loop
 
-function gameLoop(delta, fireball, direcao) {
+function gameLoop(delta, waterball, direcao) {
     switch (direcao) {
         case 0:
-            fireball.x -= 5; break;
+            waterball.x -= 3; break;
         case 1:
-            fireball.y += 5; break;
+            waterball.y += 3; break;
         case 2:
-            fireball.x += 5; break;
+            waterball.x += 3; break;
         case 3:
-            fireball.y -= 5; break;
+            waterball.y -= 3; break;
         }
 
-        if(colisao(shield, fireball)) {
-            app.stage.removeChild(fireball);
-            fireball.hitMark = 0;
+        if(colisao(shield, waterball)) {
+            app.stage.removeChild(waterball);
+            waterball.hitMark = 0;
         }
         
-        if(colisao(player, fireball)) {
-            app.stage.removeChild(fireball);
-            if(fireball.cont == 0 && fireball.hitMark == 1) { window.alert('hit!'); fireball.cont++; }
+        if(colisao(player, waterball)) {
+            app.stage.removeChild(waterball);
+            if(waterball.cont == 0 && waterball.hitMark == 1) { console.log('hit!'); waterball.cont++; }
         }
 }
 
