@@ -33,7 +33,6 @@ shield.anchor.set(0.5);
 shield.scale.set(0.8, 0.8);
 
 player.position.set(screen.width / 2, screen.height / 2.3);
-
 shield.position.set(screen.width / 2, screen.height / 3.3);
 shield.angle = 180;
 

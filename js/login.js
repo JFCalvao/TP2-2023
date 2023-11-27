@@ -63,7 +63,7 @@ function logarAutomaticamente(usuario, senha) {
     localStorage.setItem("USUARIO", usuario);
     localStorage.setItem("SENHA", senha);
     localStorage.setItem("TEMA", "CLARO");
-    location.href = "../index.html";
+    window.location = "index.html";
   } else {
     localStorage.clear();
   }
