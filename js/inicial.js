@@ -359,7 +359,7 @@ btn_play.addEventListener("click", function () {
     return;
   }
 
-  window.location = "firePhase.html";
+  window.location = "worldGame.html";
   // statusPersonagem.rankExp += 100;
 
   // if (statusPersonagem.rankExp >= expMaxRank) {
