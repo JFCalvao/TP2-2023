@@ -37,6 +37,7 @@ h1 {
     -moz-transition: transform 0.5s ease;
     -o-transition: transform 0.5s ease;
     transition: transform 0.5s ease;
+    cursor: pointer;
 }
 
 content {
@@ -74,7 +75,6 @@ content {
 
 .card-img {
     grid-row: 1/1;
-    /* background-color: #72E685; */
     background: linear-gradient(135deg, #19db3a, #3ae757, #72E685);
     width: 100%;
     height: 100%;
@@ -167,6 +167,7 @@ content {
     height: 100%;
     position: absolute;
     border-radius: 50%;
+    transition: all 0.5s ease;
 }
 
 #rangeCSS::before {
@@ -180,6 +181,7 @@ content {
     height: 100%;
     position: absolute;
     border-radius: 50%;
+    transition: all 0.5s ease;
 }
 
 #rangeJS::before {
@@ -193,6 +195,7 @@ content {
     height: 100%;
     position: absolute;
     border-radius: 50%;
+    transition: all 0.5s ease;
 }
 
 .range::after {

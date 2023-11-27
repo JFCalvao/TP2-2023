@@ -518,6 +518,7 @@ btn_cancelarEdit.addEventListener("click", () => {
   account_moldura.style.height = `${account_moldura.clientWidth}px`;
   account_img_perfil.src = img_perfil.src;
   mensagem.value = "";
+  account_personagem.src = personagem.src;
 });
 
 const inputFile = document.querySelector("#inputFile");

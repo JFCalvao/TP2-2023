@@ -53,6 +53,8 @@ body {
   align-content: end;
   justify-content: center;
   align-self: center;
+  pointer-events: none;
+  user-select: none;
 }
 
 .img-perfil #imagem-do-Perfil {
@@ -136,6 +138,8 @@ img {
   justify-content: center;
   align-content: center;
   width: 100%;
+  pointer-events: none;
+  user-select: none;
 }
 
 .tituloUsuario {

@@ -17,17 +17,42 @@ const rangeJS = document.querySelector("#rangeJS");
 let valorHTML;
 valorHTML = (porHTML*174)/100;
 valorHTML = valorHTML - 87;
-rangeHTML.style.transform = `rotate(${valorHTML}deg)`;
+let i;
+for(i = 0; i <= porHTML; i = i + 0.1) {
+    let val = ((i*174)/100) - 87;
+    setTimeout(() => {
+        rangeHTML.style.transform = `rotate(${val}deg)`;
+    }, (i*15));
+}
+setTimeout(() => {
+    rangeHTML.style.transform = `rotate(${valorHTML}deg)`;
+}, (i*15) + 100);
 
 let valorCSS;
 valorCSS = (porCSS*174)/100;
 valorCSS = valorCSS - 87;
-rangeCSS.style.transform = `rotate(${valorCSS}deg)`;
+for(i = 0; i <= porCSS; i = i + 0.1) {
+    let val = ((i*174)/100) - 87;
+    setTimeout(() => {
+        rangeCSS.style.transform = `rotate(${val}deg)`;
+    }, (i*15));
+}
+setTimeout(() => {
+    rangeCSS.style.transform = `rotate(${valorCSS}deg)`;
+}, (i*15) + 100);
 
 let valorJS;
 valorJS = (porJS*174)/100;
 valorJS = valorJS - 87;
-rangeJS.style.transform = `rotate(${valorJS}deg)`;
+for(i = 0; i <= porJS; i = i + 0.1) {
+    let val = ((i*174)/100) - 87;
+    setTimeout(() => {
+        rangeJS.style.transform = `rotate(${val}deg)`;
+    }, (i*15));
+}
+setTimeout(() => {
+    rangeJS.style.transform = `rotate(${valorJS}deg)`;
+}, (i*15) + 100);
 
 const cardImg = document.querySelectorAll(".card-img img");
 
