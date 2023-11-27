@@ -174,7 +174,6 @@ function iniciaPerfil() {
   if(linkPuroPersonagem === "imgs-personagens/personagemBrasil.png") {
     localStorage.setItem("Brasil", linkPuroPersonagem);
   }
-  console.log(linkPuroPersonagem);
   if(localStorage.Brasil) {
     perfilLiPersonagem[4].innerHTML = `<img src="${localStorage.getItem("Brasil")}" />`;
   }

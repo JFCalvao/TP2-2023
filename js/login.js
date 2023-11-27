@@ -191,8 +191,7 @@ const getData = (event) => {
       }
 
       if (encontrado === 0) {
-        window.alert("Essa conta não existe!");
-        console.log(listaData.table.rows);
+        window.alert("Essa conta não existe!!!");
         inputPassword.value = "";
         return;
       } else if (encontrado === 1) {
