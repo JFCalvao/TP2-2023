@@ -1,0 +1,79 @@
+html,
+body {
+    min-height: 100%;
+    min-width: 100%;
+    margin: 0%;
+}
+
+body {
+    margin: 0%;
+    background: url(../imagens/worldGame.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center 32.5%;
+}
+
+.mapa {
+    height: 100%;
+    width: 100%;
+}
+
+.castelo {
+    position: absolute;
+    height: 9rem;
+    width: 9rem;
+}
+
+.castelo:hover {
+    box-shadow: 0px 5px 50px black;
+    border-radius: 50%;
+}
+
+#flameCastle {
+    background: url(../imagens/flame-Castle.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+}
+#waterCastle {
+    background: url(../imagens/water-Castle.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    top: 87.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#fourElementsCastle {
+    background: url(../imagens/4elements-Castle.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 12rem;
+    width: 12rem;
+}
+#rockCastle {
+    background: url(../imagens/rock-Castle.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+}
+#airCastle {
+    background: url(../imagens/air-Castle.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    top: 12.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
