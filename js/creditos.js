@@ -77,6 +77,6 @@ btnRetornar.addEventListener("click", () => {
     btnRetornar.style.oTransform = "rotate(-360deg)";
     btnRetornar.style.transform = "rotate(-360deg)";
     setTimeout(() => {
-        window.location = "paginaInicial.html"
+        window.location = "index.html"
     }, 500);
 });
