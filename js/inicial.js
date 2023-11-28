@@ -174,10 +174,13 @@ function iniciaPerfil() {
   if (linkPuroPersonagem === "imgs-personagens/personagemBrasil.png") {
     localStorage.setItem("Brasil", linkPuroPersonagem);
   }
+  let easterEggImg = document.querySelector("#easterEgg img");
   if (localStorage.Brasil) {
-    perfilLiPersonagem[4].innerHTML = `<img src="${localStorage.getItem(
-      "Brasil"
-    )}" />`;
+    easterEggImg.style.pointerEvents = "all";
+    easterEggImg.src = localStorage.getItem("Brasil");
+  }
+  else {
+    easterEggImg.style.pointerEvents = "none";
   }
   h2_rank.innerHTML = statusPersonagem.rankExp + "/" + expMaxRank;
   log_h1.innerHTML = "DESLOGADO";
@@ -289,7 +292,7 @@ perfilImgsMoldura.forEach((element) =>
 );
 
 account_sem_moldura.addEventListener("click", () => {
-  account_moldura.src = "../imagens/imagem-sem-nada.webp";
+  account_moldura.src = "imagens/imagem-sem-nada.webp";
   account_moldura.style.height = `${account_moldura.clientWidth}px`;
 });
 
@@ -309,6 +312,10 @@ perfilImgsPersonagem.forEach((element) =>
   })
 );
 
+perfilImgsPersonagem[4].addEventListener("click", () => {
+  account_personagem.src = perfilImgsPersonagem[4].src;
+});
+
 btn_sair.addEventListener("click", deslogar);
 function deslogar() {
   if (!localStorage.USUARIO || !localStorage.SENHA || !localStorage.TEMA) {
@@ -321,7 +328,7 @@ function deslogar() {
   statusPersonagem.rankExp = 0;
   statusPersonagem.vida = 200;
   userName.innerHTML = "username";
-  img_perfil.src = "../imagens/img-perfil.png";
+  img_perfil.src = "imagens/img-perfil.png";
   iniciaPerfil();
 }
 
