@@ -90,6 +90,12 @@ document.addEventListener("keydown", (e) => {
 });
 
 let setIntervalId;
+let scoreCounter;
+let scoreCounterId;
+
+const scoreText = new PIXI.Text('Score: 0', playStyle);
+app.stage.addChild(scoreText);
+
 function createMenu() {
   const backgroundFilter = new Graphics();
   backgroundFilter.beginFill('rgba(23, 23, 23, 0.74)')
@@ -138,6 +144,12 @@ function createMenu() {
     app.stage.removeChild(playText);
     app.stage.removeChild(menuText);
     setIntervalId = setInterval(createFireball, 300);
+    scoreCounter = 0;
+    scoreText.text = 'Score: 0';
+    scoreCounterId = setInterval(() => {
+    scoreText.text = 'Score:' + ' ' + scoreCounter;
+    scoreCounter++;
+    }, 1000)
     player.health = 3;
   });
 
@@ -231,6 +243,8 @@ function gameLoop(delta, fireball, direcao) {
       
       if(player.health === 0) {
         clearInterval(setIntervalId);
+        clearInterval(scoreCounterId);
+        //e aqui voce colocar tipo o if(scoreCounter > usuario.scorecounter)
         createMenu();
       }
       
