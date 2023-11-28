@@ -549,7 +549,7 @@ input[type="file"] {
 
 #imgs-personagem li img {
   height: calc(100% - 2px);
-  width: fit-content;
+  width: 3rem;
 }
 
 #imgs-personagem li {

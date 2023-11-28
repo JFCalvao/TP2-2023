@@ -256,7 +256,7 @@ btn_editar.addEventListener("click", () => {
 });
 
 //Corrige o scroll(slider) do menu de perfil
-let tamImgsPerfil = ((perfilLiPerfil.length - 5) * 3) / 100;
+let tamImgsPerfil = (((perfilLiPerfil.length * 3) + (0.4375) - (perfil_slider.clientWidth * 0.0625))) / 100;
 perfil_slider.addEventListener("mousemove", () => {
   let valor_translate = -(perfil_slider.value * tamImgsPerfil);
   perfilLiPerfil.forEach(
@@ -271,7 +271,7 @@ perfilImgsPerfil.forEach((element) =>
 );
 
 let tamMoldura =
-  ((perfilLiMoldura.length - 5) * 3 + (perfilLiMoldura.length - 5) * 0.438) /
+  (((perfilLiMoldura.length * 3) + (0.4375) - (moldura_slider.clientWidth * 0.0625))) /
   100;
 moldura_slider.addEventListener("mousemove", () => {
   let valor_translate = -(moldura_slider.value * tamMoldura);
@@ -291,7 +291,7 @@ account_sem_moldura.addEventListener("click", () => {
   account_moldura.style.height = `${account_moldura.clientWidth}px`;
 });
 
-let tamPersonagem = ((perfilLiPersonagem.length - 5) * 3) / 100;
+let tamPersonagem = (((perfilLiPersonagem.length * 3) + (0.4375) - (personagem_slider.clientWidth * 0.0625))) / 100;
 personagem_slider.addEventListener("mousemove", () => {
   let valor_translate = -(personagem_slider.value * tamPersonagem);
   perfilLiPersonagem.forEach(
