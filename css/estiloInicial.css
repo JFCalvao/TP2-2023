@@ -357,6 +357,7 @@ img {
   border-radius: 0%;
   -webkit-user-drag: none;
   cursor: pointer;
+  user-select: none;
 }
 
 #sem-moldura {
@@ -550,6 +551,7 @@ input[type="file"] {
 #imgs-personagem li img {
   height: calc(100% - 2px);
   width: 3rem;
+  
 }
 
 #imgs-personagem li {
