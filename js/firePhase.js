@@ -96,6 +96,7 @@ document.addEventListener("keydown", (e) => {
 let setIntervalId;
 let scoreCounter;
 let scoreCounterId;
+let scoreTotal = 0;
 
 const scoreText = new PIXI.Text('Score: 0', playStyle);
 app.stage.addChild(scoreText);
@@ -121,7 +122,50 @@ function createMenu() {
   menuBtn.interactive = true;
   menuBtn.buttonMode = true;
   menuBtn.addEventListener("click", () => {
-    window.location = "index.html";
+    let expMaxRank = 100;
+    let aumento1 = 400;
+    let aumento2 = 500;
+
+    let xpRankAtual = parseInt(localStorage.getItem("RANK-EXP")) + scoreTotal;
+    let rankAtual = parseInt(localStorage.getItem("NIVEL-RANK"));
+
+    for (let i = 1; i < rankAtual; i++) {
+      if (i % 2 === 1) {
+        expMaxRank += aumento1;
+        aumento1 *= 10;
+      } else {
+        expMaxRank += aumento2;
+        aumento2 *= 10;
+      }
+    }
+
+    if (xpRankAtual >= expMaxRank) {
+      rankAtual++;
+      xpRankAtual = xpRankAtual - expMaxRank;
+    }
+    // console.log(rankAtual);
+    // console.log(xpRankAtual);
+    var xml = new XMLHttpRequest();
+    var data = JSON.stringify({
+      NIVEL_RANK: rankAtual,
+      EXP_RANK: xpRankAtual,
+    });
+    xml.open(
+      "PATCH",
+      "https://sheetdb.io/api/v1/pfuk22g9ujmao/USUARIO/" +
+        localStorage.getItem("USUARIO"),
+      true
+    );
+    xml.setRequestHeader("Content-type", "application/json");
+    xml.setRequestHeader("Accept", "application/json");
+    xml.onreadystatechange = function () {
+      if (xml.readyState === 4 && xml.status === 200) {
+        // alert(xml.responseText);
+        // alert(scoreTotal);
+        window.location = "index.html";
+      }
+    };
+    xml.send(data);
   });
 
   
@@ -249,6 +293,8 @@ function gameLoop(delta, fireball, direcao) {
       if(player.health === 0) {
         clearInterval(setIntervalId);
         clearInterval(scoreCounterId);
+        scoreTotal+= parseInt(scoreCounter);
+        // console.log(scoreCounter);
         //e aqui voce colocar tipo o if(scoreCounter > usuario.scorecounter)
         bossMusic.stop();
         createMenu();

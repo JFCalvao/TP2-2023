@@ -149,6 +149,10 @@ function iniciaPerfil() {
       aumento2 *= 10;
     }
   }
+  
+  localStorage.setItem("RANK-EXP", statusPersonagem.rankExp);
+  localStorage.setItem("NIVEL-RANK", statusPersonagem.nivelRank);
+
   localStorage.setItem("PERSONAGEM", personagem.src);
   rank.style.width = `${statusPersonagem.rankExp / (expMaxRank / 100)}%`;
   if (localStorage.MUSICA) {
