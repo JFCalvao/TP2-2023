@@ -85,10 +85,8 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-let intervaloAttack;
-
+let setIntervalID;
 function createMenu() {
-  clearInterval(intervaloAttack);
   player.health = 3;
   const backgroundFilter = new Graphics();
   backgroundFilter.beginFill('rgba(23, 23, 23, 0.74)')
@@ -227,10 +225,12 @@ function gameLoop(delta, airball, direcao) {
       airball.sound = 0;
       player.health--;
       playerhitSound.play();
-
+      
       if(player.health <= 0) {
+        clearInterval(setIntervalId);
         createMenu();
       }
+      
     }
   }
 }
