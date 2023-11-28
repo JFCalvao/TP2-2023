@@ -56,7 +56,9 @@ background.height = screen.height;
 
 player.anchor.set(0.5);
 shield.anchor.set(0.5);
-shield.scale.set(0.8, 0.8);
+
+player.scale.set(screen.width / 1920, screen.height / 1080)
+shield.scale.set(screen.width / 1920 * 0.8, screen.height / 1080 * 0.8);
 
 player.position.set(screen.width / 2, screen.height / 2.3);
 shield.position.set(screen.width / 2, screen.height / 3.3);
@@ -89,7 +91,6 @@ document.addEventListener("keydown", (e) => {
 
 let setIntervalId;
 function createMenu() {
-  player.health = 3;
   const backgroundFilter = new Graphics();
   backgroundFilter.beginFill('rgba(23, 23, 23, 0.74)')
   .drawRect(0, 0, screen.width, screen.height)
@@ -228,7 +229,7 @@ function gameLoop(delta, fireball, direcao) {
       player.health--;
       playerhitSound.play();
       
-      if(player.health <= 0) {
+      if(player.health === 0) {
         clearInterval(setIntervalId);
         createMenu();
       }

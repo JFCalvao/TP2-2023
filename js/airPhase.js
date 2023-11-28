@@ -2,14 +2,14 @@ const Application = PIXI.Application;
 const Graphics = PIXI.Graphics;
 
 const playStyle = new PIXI.TextStyle({
-  fontFamily: '\"Lucida Console\", Monaco, monospace',
-  fontSize: (screen.width * 0.046875),
+  fontFamily: '"Lucida Console", Monaco, monospace',
+  fontSize: screen.width * 0.046875,
   align: "center",
 });
 
 const returnStyle = new PIXI.TextStyle({
-  fontFamily: '\"Lucida Console\", Monaco, monospace',
-  fontSize: (screen.width * 0.02604),
+  fontFamily: '"Lucida Console", Monaco, monospace',
+  fontSize: screen.width * 0.02604,
   align: "center",
 });
 
@@ -33,15 +33,15 @@ const background = PIXI.Sprite.from("imagens/airbackground.jpg");
 //adicao de sons
 
 const shieldhitSound = new Howl({
-  src: ['sons/hitSound.wav'],
+  src: ["sons/hitSound.wav"],
   autoplay: true,
-  volume: (localStorage.getItem("VOLUME")/100),
+  volume: localStorage.getItem("VOLUME") / 100,
 });
 
 const playerhitSound = new Howl({
-  src: ['sons/somDeMorte.wav'],
+  src: ["sons/somDeMorte.wav"],
   autoplay: true,
-  volume: (localStorage.getItem("VOLUME")/100),
+  volume: localStorage.getItem("VOLUME") / 100,
 });
 
 app.stage.addChild(background);
@@ -57,8 +57,8 @@ background.height = screen.height;
 player.anchor.set(0.5);
 shield.anchor.set(0.5);
 
-player.scale.set(screen.width / 1920, screen.height / 1080)
-shield.scale.set(screen.width / 1920 * 0.8, screen.height / 1080 * 0.8);
+player.scale.set(screen.width / 1920, screen.height / 1080);
+shield.scale.set((screen.width / 1920) * 0.8, (screen.height / 1080) * 0.8);
 
 player.position.set(screen.width / 2, screen.height / 2.3);
 shield.position.set(screen.width / 2, screen.height / 3.3);
@@ -72,7 +72,7 @@ document.addEventListener("keydown", (e) => {
     shield.x = screen.width / 2;
     shield.y = screen.height / 3.3;
   }
-  if (e.key === "ArrowRight" || e.key ===  "d") {
+  if (e.key === "ArrowRight" || e.key === "d") {
     shield.angle = 270;
     shield.x = screen.width / 1.74;
     shield.y = screen.height / 2.3;
@@ -91,23 +91,35 @@ document.addEventListener("keydown", (e) => {
 
 let setIntervalId;
 function createMenu() {
-  player.health = 3;
   const backgroundFilter = new Graphics();
-  backgroundFilter.beginFill('rgba(23, 23, 23, 0.74)')
-  .drawRect(0, 0, screen.width, screen.height)
-  .endFill();
+  backgroundFilter
+    .beginFill("rgba(23, 23, 23, 0.74)")
+    .drawRect(0, 0, screen.width, screen.height)
+    .endFill();
 
   const playBtn = new Graphics();
-  playBtn.beginFill('rgba(128, 38, 0, 1)')
-  .lineStyle(4, 'rgba(71, 21, 0, 1)')
-  .drawRect(screen.width / 2.65, screen.height / 4.5, screen.width / 4, screen.height / 8)
-  .endFill();
-  
+  playBtn
+    .beginFill("rgba(128, 38, 0, 1)")
+    .lineStyle(4, "rgba(71, 21, 0, 1)")
+    .drawRect(
+      screen.width / 2.65,
+      screen.height / 4.5,
+      screen.width / 4,
+      screen.height / 8
+    )
+    .endFill();
+
   const menuBtn = new Graphics();
-  menuBtn.beginFill('rgba(128, 38, 0, 1)')
-  .lineStyle(4, 'rgba(71, 21, 0, 1)')
-  .drawRect(screen.width / 2.65, screen.height / 2.5, screen.width / 4, screen.height / 8)
-  .endFill();
+  menuBtn
+    .beginFill("rgba(128, 38, 0, 1)")
+    .lineStyle(4, "rgba(71, 21, 0, 1)")
+    .drawRect(
+      screen.width / 2.65,
+      screen.height / 2.5,
+      screen.width / 4,
+      screen.height / 8
+    )
+    .endFill();
 
   menuBtn.interactive = true;
   menuBtn.buttonMode = true;
@@ -115,15 +127,14 @@ function createMenu() {
     window.location = "index.html";
   });
 
-  
-  const playText = new PIXI.Text('PLAY', playStyle);
+  const playText = new PIXI.Text("PLAY", playStyle);
   playText.x = screen.width / 2.29;
   playText.y = screen.height / 4.1;
-  
-  const menuText = new PIXI.Text('RETURN TO MENU', returnStyle);
+
+  const menuText = new PIXI.Text("RETURN TO MENU", returnStyle);
   menuText.x = screen.width / 2.55;
   menuText.y = screen.height / 2.28;
-  
+
   app.stage.addChild(backgroundFilter);
   app.stage.addChild(playBtn);
   app.stage.addChild(menuBtn);
@@ -141,7 +152,6 @@ function createMenu() {
     setIntervalId = setInterval(createAirball, 1000);
     player.health = 3;
   });
-
 }
 
 //spawna o projetil
@@ -154,7 +164,7 @@ function createAirball() {
   airball.hitMark = 1;
   airball.sound = 1;
   airball.anchor.set(0.5);
-  airball.scale.set(screen.width / 1920 * 0.3, screen.height / 1080 * 0.3);
+  airball.scale.set((screen.width / 1920) * 0.3, (screen.height / 1080) * 0.3);
   let direcao = decisaoDeSpawn(airball);
 
   app.stage.addChild(airball);
@@ -217,7 +227,7 @@ function gameLoop(delta, airball, direcao) {
     app.stage.removeChild(airball);
     airball.hitMark = 0;
 
-    if(airball.sound == 1) {
+    if (airball.sound == 1) {
       shieldhitSound.play();
       airball.sound = 0;
     }
@@ -230,12 +240,11 @@ function gameLoop(delta, airball, direcao) {
       airball.sound = 0;
       player.health--;
       playerhitSound.play();
-      
-      if(player.health <= 0) {
+
+      if (player.health === 0) {
         clearInterval(setIntervalId);
         createMenu();
       }
-      
     }
   }
 }
