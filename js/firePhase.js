@@ -3,20 +3,20 @@ const Graphics = PIXI.Graphics;
 
 const playStyle = new PIXI.TextStyle({
   fontFamily: '\"Lucida Console\", Monaco, monospace',
-  fontSize: 90
+  fontSize: (screen.width * 0.046875),
+  align: "center",
 })
 
 const returnStyle = new PIXI.TextStyle({
   fontFamily: '\"Lucida Console\", Monaco, monospace',
-  fontSize: 50
+  fontSize: (screen.width * 0.02604),
+  align: "center",
 })
 
 const app = new Application({
   width: window.innerWidth,
   height: window.innerHeight,
 });
-
-const time = 0;
 
 app.renderer.backgroundColor = "grey";
 
@@ -44,16 +44,7 @@ const playerhitSound = new Howl({
   volume: (localStorage.getItem("VOLUME")/100),
 });
 
-
-  // const backgroundFilter = new Graphics();
-
-  // backgroundFilter.beginFill('grey')
-  // .drawRect(0, 0, screen.width, screen.height)
-  // .alpha(0.4)
-  // .endFill;
-
 app.stage.addChild(background);
-//app.stage.addChild(backgroundFilter);
 app.stage.addChild(player);
 app.stage.addChild(shield);
 
@@ -68,36 +59,37 @@ shield.anchor.set(0.5);
 shield.scale.set(0.8, 0.8);
 
 player.position.set(screen.width / 2, screen.height / 2.3);
-
 shield.position.set(screen.width / 2, screen.height / 3.3);
 shield.angle = 180;
 
 //movimentacao do escudo
 
 document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowUp" || e.key === "W") {
-      shield.angle = 180;
-      shield.x = screen.width / 2;
-      shield.y = screen.height / 3.3;
-    }
-    if (e.key === "ArrowRight" || e.key ===  "D") {
-      shield.angle = 270;
-      shield.x = screen.width / 1.74;
-      shield.y = screen.height / 2.3;
-    }
-    if (e.key === "ArrowLeft" || e.key === "A") {
-      shield.angle = 90;
-      shield.y = screen.height / 2.3;
-      shield.x = screen.width / 2.35;
-    }
-    if (e.key === "ArrowDown" || e.key === "S") {
-      shield.y = screen.height / 1.75;
-      shield.x = screen.width / 2;
-      shield.angle = 360;
-    }
+  if (e.key === "ArrowUp" || e.key === "w") {
+    shield.angle = 180;
+    shield.x = screen.width / 2;
+    shield.y = screen.height / 3.3;
+  }
+  if (e.key === "ArrowRight" || e.key ===  "d") {
+    shield.angle = 270;
+    shield.x = screen.width / 1.74;
+    shield.y = screen.height / 2.3;
+  }
+  if (e.key === "ArrowLeft" || e.key === "a") {
+    shield.angle = 90;
+    shield.y = screen.height / 2.3;
+    shield.x = screen.width / 2.35;
+  }
+  if (e.key === "ArrowDown" || e.key === "s") {
+    shield.y = screen.height / 1.75;
+    shield.x = screen.width / 2;
+    shield.angle = 360;
+  }
 });
 
+let setIntervalId;
 function createMenu() {
+  player.health = 3;
   const backgroundFilter = new Graphics();
   backgroundFilter.beginFill('rgba(23, 23, 23, 0.74)')
   .drawRect(0, 0, screen.width, screen.height)
@@ -114,22 +106,42 @@ function createMenu() {
   .lineStyle(4, 'rgba(71, 21, 0, 1)')
   .drawRect(screen.width / 2.65, screen.height / 2.5, screen.width / 4, screen.height / 8)
   .endFill();
+
+  menuBtn.interactive = true;
+  menuBtn.buttonMode = true;
+  menuBtn.addEventListener("click", () => {
+    window.location = "index.html";
+  });
+
   
   const playText = new PIXI.Text('PLAY', playStyle);
   playText.x = screen.width / 2.29;
   playText.y = screen.height / 4.1;
   
- const menuText = new PIXI.Text('RETURN TO MENU', returnStyle);
- menuText.x = screen.width / 2.55;
- menuText.y = screen.height / 2.28;
+  const menuText = new PIXI.Text('RETURN TO MENU', returnStyle);
+  menuText.x = screen.width / 2.55;
+  menuText.y = screen.height / 2.28;
   
   app.stage.addChild(backgroundFilter);
   app.stage.addChild(playBtn);
   app.stage.addChild(menuBtn);
   app.stage.addChild(playText);
   app.stage.addChild(menuText);
+
+  playBtn.interactive = true;
+  playBtn.buttonMode = true;
+  playBtn.addEventListener("click", () => {
+    app.stage.removeChild(backgroundFilter);
+    app.stage.removeChild(playBtn);
+    app.stage.removeChild(menuBtn);
+    app.stage.removeChild(playText);
+    app.stage.removeChild(menuText);
+    setIntervalId = setInterval(createFireball, 300);
+    player.health = 3;
+  });
+
 }
-//setInterval(createFireball, 200);
+
 //spawna o projetil
 createMenu();
 
@@ -213,7 +225,14 @@ function gameLoop(delta, fireball, direcao) {
     if (fireball.cont == 0 && fireball.hitMark == 1) {
       fireball.cont++;
       fireball.sound = 0;
+      player.health--;
       playerhitSound.play();
+      
+      if(player.health <= 0) {
+        clearInterval(setIntervalId);
+        createMenu();
+      }
+      
     }
   }
 }

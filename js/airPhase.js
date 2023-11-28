@@ -65,29 +65,29 @@ shield.angle = 180;
 //movimentacao do escudo
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowUp" || e.key === "W") {
+  if (e.key === "ArrowUp" || e.key === "w") {
     shield.angle = 180;
     shield.x = screen.width / 2;
     shield.y = screen.height / 3.3;
   }
-  if (e.key === "ArrowRight" || e.key ===  "D") {
+  if (e.key === "ArrowRight" || e.key ===  "d") {
     shield.angle = 270;
     shield.x = screen.width / 1.74;
     shield.y = screen.height / 2.3;
   }
-  if (e.key === "ArrowLeft" || e.key === "A") {
+  if (e.key === "ArrowLeft" || e.key === "a") {
     shield.angle = 90;
     shield.y = screen.height / 2.3;
     shield.x = screen.width / 2.35;
   }
-  if (e.key === "ArrowDown" || e.key === "S") {
+  if (e.key === "ArrowDown" || e.key === "s") {
     shield.y = screen.height / 1.75;
     shield.x = screen.width / 2;
     shield.angle = 360;
   }
 });
 
-let setIntervalID;
+let setIntervalId;
 function createMenu() {
   player.health = 3;
   const backgroundFilter = new Graphics();
@@ -129,16 +129,17 @@ function createMenu() {
   app.stage.addChild(menuText);
 
   playBtn.interactive = true;
-    playBtn.buttonMode = true;
-    playBtn.addEventListener("click", () => {
-      app.stage.removeChild(backgroundFilter);
-      app.stage.removeChild(playBtn);
-      app.stage.removeChild(menuBtn);
-      app.stage.removeChild(playText);
-      app.stage.removeChild(menuText);
-      setIntervalId = setInterval(createAirball, 1000);
-      player.health = 3;
-    });
+  playBtn.buttonMode = true;
+  playBtn.addEventListener("click", () => {
+    app.stage.removeChild(backgroundFilter);
+    app.stage.removeChild(playBtn);
+    app.stage.removeChild(menuBtn);
+    app.stage.removeChild(playText);
+    app.stage.removeChild(menuText);
+    setIntervalId = setInterval(createAirball, 1000);
+    player.health = 3;
+  });
+
 }
 
 //spawna o projetil
