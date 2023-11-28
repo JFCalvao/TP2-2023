@@ -32,6 +32,11 @@ const background = PIXI.Sprite.from("imagens/waterbackground.png");
 
 //adicao de sons
 
+const bossMusic = new Howl({
+  src: ['sons/waterMusic.wav'],
+  volume: localStorage.getItem("MUSICA") / 100,
+})
+
 const shieldhitSound = new Howl({
   src: ["sons/hitSound.wav"],
   autoplay: true,
@@ -151,6 +156,7 @@ function createMenu() {
     app.stage.removeChild(menuText);
     setIntervalId = setInterval(createWaterball, 250);
     player.health = 3;
+    bossMusic.play();
   });
 }
 
@@ -242,6 +248,7 @@ function gameLoop(delta, waterball, direcao) {
 
       if (player.health === 0) {
         clearInterval(setIntervalId);
+        bossMusic.stop();
         createMenu();
       }
     }

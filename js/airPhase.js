@@ -32,6 +32,11 @@ const background = PIXI.Sprite.from("imagens/airbackground.jpg");
 
 //adicao de sons
 
+const bossMusic = new Howl({
+  src: ['sons/airMusic.wav'],
+  volume: localStorage.getItem("MUSICA") / 100,
+})
+
 const shieldhitSound = new Howl({
   src: ["sons/hitSound.wav"],
   autoplay: true,
@@ -151,6 +156,7 @@ function createMenu() {
     app.stage.removeChild(menuText);
     setIntervalId = setInterval(createAirball, 1000);
     player.health = 3;
+    bossMusic.play();
   });
 }
 
@@ -210,16 +216,16 @@ function getRndInteger(min, max) {
 function gameLoop(delta, airball, direcao) {
   switch (direcao) {
     case 0:
-      airball.x -= 12;
+      airball.x -= 10;
       break;
     case 1:
-      airball.y += 12;
+      airball.y += 8;
       break;
     case 2:
-      airball.x += 12;
+      airball.x += 10;
       break;
     case 3:
-      airball.y -= 12;
+      airball.y -= 8;
       break;
   }
 
@@ -243,6 +249,7 @@ function gameLoop(delta, airball, direcao) {
 
       if (player.health === 0) {
         clearInterval(setIntervalId);
+        bossMusic.stop();
         createMenu();
       }
     }

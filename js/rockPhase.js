@@ -32,6 +32,11 @@ const background = PIXI.Sprite.from("imagens/rockbackground.png");
 
 //adicao de sons
 
+const bossMusic = new Howl({
+  src: ['sons/rockMusic.wav'],
+  volume: (localStorage.getItem("MUSICA")/100)
+});
+
 const shieldhitSound = new Howl({
   src: ["sons/hitSound.wav"],
   autoplay: true,
@@ -151,6 +156,7 @@ function createMenu() {
     app.stage.removeChild(menuText);
     setIntervalId = setInterval(createRockball, 400);
     player.health = 3;
+    bossMusic.play();
   });
 }
 
@@ -242,6 +248,7 @@ function gameLoop(delta, rockball, direcao) {
 
       if (player.health === 0) {
         clearInterval(setIntervalId);
+        bossMusic.stop();
         createMenu();
       }
     }

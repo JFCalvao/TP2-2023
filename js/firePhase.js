@@ -32,9 +32,9 @@ const background = PIXI.Sprite.from("imagens/firebackground.png");
 
 //adicao de sons
 const bossMusic = new Howl({
-  src: ['sons/bossMusic.wav'],
+  src: ['sons/fireMusic.wav'],
   volume: (localStorage.getItem("MUSICA")/100),
-})
+});
 
 const shieldhitSound = new Howl({
   src: ['sons/hitSound.wav'],
