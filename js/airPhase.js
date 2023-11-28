@@ -56,7 +56,9 @@ background.height = screen.height;
 
 player.anchor.set(0.5);
 shield.anchor.set(0.5);
-shield.scale.set(0.8, 0.8);
+
+player.scale.set(screen.width / 1920, screen.height / 1080)
+shield.scale.set(screen.width / 1920 * 0.8, screen.height / 1080 * 0.8);
 
 player.position.set(screen.width / 2, screen.height / 2.3);
 shield.position.set(screen.width / 2, screen.height / 3.3);
@@ -152,7 +154,7 @@ function createAirball() {
   airball.hitMark = 1;
   airball.sound = 1;
   airball.anchor.set(0.5);
-  airball.scale.set(0.3, 0.3);
+  airball.scale.set(screen.width / 1920 * 0.3, screen.height / 1080 * 0.3);
   let direcao = decisaoDeSpawn(airball);
 
   app.stage.addChild(airball);
