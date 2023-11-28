@@ -97,6 +97,10 @@ let setIntervalId;
 let scoreCounter;
 let scoreCounterId;
 
+const healthText = new PIXI.Text('Vida: 200', playStyle);
+healthText.x = screen.width / 2 + screen.width / 5;
+app.stage.addChild(healthText);
+
 const scoreText = new PIXI.Text('Score: 0', playStyle);
 app.stage.addChild(scoreText);
 
@@ -154,7 +158,7 @@ function createMenu() {
     scoreText.text = 'Score:' + ' ' + scoreCounter;
     scoreCounter++;
     }, 1000)
-    player.health = 3;
+    player.health = 200;
     bossMusic.play();
   });
 
@@ -243,13 +247,13 @@ function gameLoop(delta, fireball, direcao) {
     if (fireball.cont == 0 && fireball.hitMark == 1) {
       fireball.cont++;
       fireball.sound = 0;
-      player.health--;
+      player.health -= 50;
+      healthText.text = 'Vida: ' + player.health;
       playerhitSound.play();
       
       if(player.health === 0) {
         clearInterval(setIntervalId);
         clearInterval(scoreCounterId);
-        //e aqui voce colocar tipo o if(scoreCounter > usuario.scorecounter)
         bossMusic.stop();
         createMenu();
       }
