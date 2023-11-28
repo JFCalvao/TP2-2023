@@ -13,6 +13,13 @@ const returnStyle = new PIXI.TextStyle({
   align: "center",
 })
 
+const topStyle = new PIXI.TextStyle({
+  fontFamily: "Georgia",
+  fontVariant: "small-caps",
+  fill: '#ffffff',
+  fontSize: screen.width * 0.0625
+})
+
 const app = new Application({
   width: window.innerWidth,
   height: window.innerHeight,
@@ -98,7 +105,11 @@ let scoreCounter;
 let scoreCounterId;
 let scoreTotal = 0;
 
-const scoreText = new PIXI.Text('Score: 0', playStyle);
+const healthText = new PIXI.Text('Vida: 200', topStyle);
+healthText.x = screen.width / 2 + screen.width / 5;
+app.stage.addChild(healthText);
+
+const scoreText = new PIXI.Text('Score: 0', topStyle);
 app.stage.addChild(scoreText);
 
 function createMenu() {
@@ -198,7 +209,7 @@ function createMenu() {
     scoreText.text = 'Score:' + ' ' + scoreCounter;
     scoreCounter++;
     }, 1000)
-    player.health = 3;
+    player.health = 200;
     bossMusic.play();
   });
 
@@ -287,15 +298,19 @@ function gameLoop(delta, fireball, direcao) {
     if (fireball.cont == 0 && fireball.hitMark == 1) {
       fireball.cont++;
       fireball.sound = 0;
-      player.health--;
+      player.health -= 50;
+      healthText.text = 'Vida: ' + player.health;
       playerhitSound.play();
       
       if(player.health === 0) {
         clearInterval(setIntervalId);
         clearInterval(scoreCounterId);
+<<<<<<< HEAD
         scoreTotal+= parseInt(scoreCounter);
         // console.log(scoreCounter);
         //e aqui voce colocar tipo o if(scoreCounter > usuario.scorecounter)
+=======
+>>>>>>> 85784381044f37095b7e3ed9e6da950685319b45
         bossMusic.stop();
         createMenu();
       }

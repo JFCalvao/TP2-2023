@@ -13,6 +13,13 @@ const returnStyle = new PIXI.TextStyle({
   align: "center",
 });
 
+const topStyle = new PIXI.TextStyle({
+  fontFamily: "Georgia",
+  fontVariant: "small-caps",
+  fill: "#ffffff",
+  fontSize: screen.width * 0.0625
+})
+
 const app = new Application({
   width: window.innerWidth,
   height: window.innerHeight,
@@ -95,6 +102,16 @@ document.addEventListener("keydown", (e) => {
 });
 
 let setIntervalId;
+let scoreCounter;
+let scoreCounterId;
+
+const healthText = new PIXI.Text('Vida: 200', topStyle);
+healthText.x = screen.width / 2 + screen.width / 5;
+app.stage.addChild(healthText);
+
+const scoreText = new PIXI.Text('Score: 0', topStyle);
+app.stage.addChild(scoreText);
+
 function createMenu() {
   const backgroundFilter = new Graphics();
   backgroundFilter
@@ -155,9 +172,15 @@ function createMenu() {
     app.stage.removeChild(playText);
     app.stage.removeChild(menuText);
     setIntervalId = setInterval(createAirball, 1000);
-    player.health = 3;
-    bossMusic.play();
-  });
+    scoreCounter = 0;
+    scoreText.text = 'Score: 0';
+    scoreCounterId = setInterval(() => {
+      scoreText.text = 'Score:' + ' ' + scoreCounter;
+      scoreCounter++;
+      }, 1000)
+      player.health = 200;
+      bossMusic.play();
+    });
 }
 
 //spawna o projetil
@@ -244,12 +267,14 @@ function gameLoop(delta, airball, direcao) {
     if (airball.cont == 0 && airball.hitMark == 1) {
       airball.cont++;
       airball.sound = 0;
-      player.health--;
+      player.health -= 50;
+      healthText.text = 'Vida: ' + player.health;
       playerhitSound.play();
 
       if (player.health === 0) {
         clearInterval(setIntervalId);
         bossMusic.stop();
+        clearInterval(scoreCounterId);
         createMenu();
       }
     }

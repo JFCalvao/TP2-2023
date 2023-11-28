@@ -13,6 +13,13 @@ const returnStyle = new PIXI.TextStyle({
   align: "center",
 });
 
+const topStyle = new PIXI.TextStyle({
+  fontFamily: "Georgia",
+  fontVariant: "small-caps",
+  fill: "#ffffff",
+  fontSize: screen.width * 0.0625
+})
+
 const app = new Application({
   width: window.innerWidth,
   height: window.innerHeight,
@@ -35,7 +42,7 @@ const background = PIXI.Sprite.from("imagens/waterbackground.png");
 const bossMusic = new Howl({
   src: ['sons/waterMusic.wav'],
   volume: localStorage.getItem("MUSICA") / 100,
-})
+});
 
 const shieldhitSound = new Howl({
   src: ["sons/hitSound.wav"],
@@ -95,6 +102,16 @@ document.addEventListener("keydown", (e) => {
 });
 
 let setIntervalId;
+let scoreCounter;
+let scoreCounterId;
+
+const healthText = new PIXI.Text('Vida: 200', topStyle);
+healthText.x = screen.width / 2 + screen.width / 5;
+app.stage.addChild(healthText);
+
+const scoreText = new PIXI.Text('Score: 0', topStyle);
+app.stage.addChild(scoreText);
+
 function createMenu() {
   const backgroundFilter = new Graphics();
   backgroundFilter
@@ -155,8 +172,14 @@ function createMenu() {
     app.stage.removeChild(playText);
     app.stage.removeChild(menuText);
     setIntervalId = setInterval(createWaterball, 250);
-    player.health = 3;
-    bossMusic.play();
+    scoreCounter = 0;
+    scoreText.text = 'Score: 0';
+    scoreCounterId = setInterval(() => {
+      scoreText.text = 'Score:' + ' ' + scoreCounter;
+      scoreCounter++;
+      }, 1000)
+      player.health = 200;
+      bossMusic.play();
   });
 }
 
@@ -243,11 +266,13 @@ function gameLoop(delta, waterball, direcao) {
     if (waterball.cont == 0 && waterball.hitMark == 1) {
       waterball.cont++;
       waterball.sound = 0;
-      player.health--;
+      player.health -= 50;
+      healthText.text = 'Vida: ' + player.health;
       playerhitSound.play();
 
       if (player.health === 0) {
         clearInterval(setIntervalId);
+        clearInterval(scoreCounterId);
         bossMusic.stop();
         createMenu();
       }
