@@ -3,12 +3,14 @@ const Graphics = PIXI.Graphics;
 
 const playStyle = new PIXI.TextStyle({
   fontFamily: '\"Lucida Console\", Monaco, monospace',
-  fontSize: 90
+  fontSize: (screen.width * 0.046875),
+  align: "center",
 });
 
 const returnStyle = new PIXI.TextStyle({
   fontFamily: '\"Lucida Console\", Monaco, monospace',
-  fontSize: 50
+  fontSize: (screen.width * 0.02604),
+  align: "center",
 });
 
 const app = new Application({
