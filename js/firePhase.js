@@ -31,6 +31,10 @@ const shield = PIXI.Sprite.from("imagens/shield.png");
 const background = PIXI.Sprite.from("imagens/firebackground.png");
 
 //adicao de sons
+const bossMusic = new Howl({
+  src: ['sons/bossMusic.wav'],
+  volume: (localStorage.getItem("MUSICA")/100),
+})
 
 const shieldhitSound = new Howl({
   src: ['sons/hitSound.wav'],
@@ -151,6 +155,7 @@ function createMenu() {
     scoreCounter++;
     }, 1000)
     player.health = 3;
+    bossMusic.play();
   });
 
 }
@@ -245,6 +250,7 @@ function gameLoop(delta, fireball, direcao) {
         clearInterval(setIntervalId);
         clearInterval(scoreCounterId);
         //e aqui voce colocar tipo o if(scoreCounter > usuario.scorecounter)
+        bossMusic.stop();
         createMenu();
       }
       
