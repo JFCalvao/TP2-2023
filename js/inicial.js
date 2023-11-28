@@ -46,7 +46,7 @@ const personagem_slider = document.querySelector("#personagem-slider");
 const perfilLiPersonagem = document.querySelectorAll("#imgs-personagem li");
 const perfilImgsPersonagem = document.querySelectorAll(
   "#imgs-personagem li img"
-  );
+);
 const moldura = document.querySelector("#moldura");
 let linkPuroPersonagem;
 
@@ -103,7 +103,7 @@ function procuraUser() {
         } else if (encontrado === 1) {
           //o que eu quero que faca
           img_perfil.src = listaData.table.rows[localProcurar].c[2].v;
-          if(localStorage.URL) {
+          if (localStorage.URL) {
             img_perfil.src = localStorage.getItem("URL");
             account_img_perfil.style.height = `${account_img_perfil.clientWidth}px`;
           }
@@ -149,9 +149,9 @@ function iniciaPerfil() {
       aumento2 *= 10;
     }
   }
-  localStorage.setItem("PERSONAGEM",personagem.src);
+  localStorage.setItem("PERSONAGEM", personagem.src);
   rank.style.width = `${statusPersonagem.rankExp / (expMaxRank / 100)}%`;
-  if(localStorage.MUSICA) {
+  if (localStorage.MUSICA) {
     inputmusica.value = localStorage.getItem("MUSICA");
     let color = inputmusica.value;
     inputmusica.style.background =
@@ -161,7 +161,7 @@ function iniciaPerfil() {
     }%`;
     h3_musica.innerHTML = color + "%";
   }
-  if(localStorage.VOLUME) {
+  if (localStorage.VOLUME) {
     inputvolume.value = localStorage.getItem("VOLUME");
     let color = inputvolume.value;
     inputvolume.style.background =
@@ -171,11 +171,13 @@ function iniciaPerfil() {
     }%`;
     h3_volume.innerHTML = color + "%";
   }
-  if(linkPuroPersonagem === "imgs-personagens/personagemBrasil.png") {
+  if (linkPuroPersonagem === "imgs-personagens/personagemBrasil.png") {
     localStorage.setItem("Brasil", linkPuroPersonagem);
   }
-  if(localStorage.Brasil) {
-    perfilLiPersonagem[4].innerHTML = `<img src="${localStorage.getItem("Brasil")}" />`;
+  if (localStorage.Brasil) {
+    perfilLiPersonagem[4].innerHTML = `<img src="${localStorage.getItem(
+      "Brasil"
+    )}" />`;
   }
   h2_rank.innerHTML = statusPersonagem.rankExp + "/" + expMaxRank;
   log_h1.innerHTML = "DESLOGADO";
@@ -216,8 +218,8 @@ inputmusica.addEventListener("mousemove", () => {
   }%`;
   h3_musica.innerHTML = color + "%";
   //falta fazer algo com o valor desse input para mudar a musica
-  if(valMusicaAnterior !== inputmusica.value) {
-    localStorage.setItem("MUSICA",inputmusica.value);
+  if (valMusicaAnterior !== inputmusica.value) {
+    localStorage.setItem("MUSICA", inputmusica.value);
   }
   valMusicaAnterior = inputmusica.value;
 });
@@ -233,8 +235,8 @@ inputvolume.addEventListener("mousemove", () => {
   h3_volume.innerHTML = color + "%";
 
   //falta fazer algo com o valor desse input para mudar o volume
-  if(valVolumeAnterior !== inputvolume.value) {
-    localStorage.setItem("VOLUME",inputvolume.value);
+  if (valVolumeAnterior !== inputvolume.value) {
+    localStorage.setItem("VOLUME", inputvolume.value);
   }
   valVolumeAnterior = inputvolume.value;
 });
@@ -256,7 +258,8 @@ btn_editar.addEventListener("click", () => {
 });
 
 //Corrige o scroll(slider) do menu de perfil
-let tamImgsPerfil = (((perfilLiPerfil.length * 3) + (0.4375) - (perfil_slider.clientWidth * 0.0625))) / 100;
+let tamImgsPerfil =
+  (perfilLiPerfil.length * 3 - perfil_slider.clientWidth * 0.0625) / 100;
 perfil_slider.addEventListener("mousemove", () => {
   let valor_translate = -(perfil_slider.value * tamImgsPerfil);
   perfilLiPerfil.forEach(
@@ -271,8 +274,7 @@ perfilImgsPerfil.forEach((element) =>
 );
 
 let tamMoldura =
-  (((perfilLiMoldura.length * 3) + (0.4375) - (moldura_slider.clientWidth * 0.0625))) /
-  100;
+  (perfilLiMoldura.length * 3 - moldura_slider.clientWidth * 0.0625) / 100;
 moldura_slider.addEventListener("mousemove", () => {
   let valor_translate = -(moldura_slider.value * tamMoldura);
   perfilLiMoldura.forEach(
@@ -291,7 +293,9 @@ account_sem_moldura.addEventListener("click", () => {
   account_moldura.style.height = `${account_moldura.clientWidth}px`;
 });
 
-let tamPersonagem = (((perfilLiPersonagem.length * 3) + (0.4375) - (personagem_slider.clientWidth * 0.0625))) / 100;
+let tamPersonagem =
+  (perfilLiPersonagem.length * 3 - personagem_slider.clientWidth * 0.0625) /
+  100;
 personagem_slider.addEventListener("mousemove", () => {
   let valor_translate = -(personagem_slider.value * tamPersonagem);
   perfilLiPersonagem.forEach(
@@ -426,7 +430,9 @@ btn_play.addEventListener("click", function () {
 });
 
 const ocupaBotaoCarrinho = document.querySelector("#ocupa-botao-carrinho");
-const ocupaBotaoCarrinho_div = document.querySelector("#ocupa-botao-carrinho #texto-div");
+const ocupaBotaoCarrinho_div = document.querySelector(
+  "#ocupa-botao-carrinho #texto-div"
+);
 const carrinhoContainer = document.querySelector("#carrinho-container");
 
 let disable = 0;
@@ -438,11 +444,9 @@ ocupaBotaoCarrinho.addEventListener("mouseover", () => {
   carrinhoContainer.style.width = "47%";
   ocupaBotaoCarrinho_div.innerHTML = "";
   setTimeout(() => {
-    if(disable) {
+    if (disable) {
       return;
-    }
-    else {
-
+    } else {
       setTimeout(() => {
         ocupaBotaoCarrinho_div.innerHTML = `<h4>C|</h4>`;
       }, 100);
@@ -476,7 +480,7 @@ ocupaBotaoCarrinho.addEventListener("mouseout", () => {
     texto.style.visibility = "hidden";
   }, 100);
   carrinhoContainer.style.width = "2.4rem";
-  if(html_body.clientHeight <= 700) {
+  if (html_body.clientHeight <= 700) {
     carrinhoContainer.style.width = "2rem";
   }
   ocupaBotaoCarrinho_div.innerHTML = "";
@@ -491,20 +495,26 @@ ocupaBotaoCarrinho.addEventListener("click", () => {
 const mensagem = document.querySelector("#mensagem");
 let perfilURL = "nada";
 btn_salvarEdit.addEventListener("click", () => {
-  if(!localStorage.getItem("USUARIO")) {
+  if (!localStorage.getItem("USUARIO")) {
     alert("Logue primeiro!");
     return;
   }
 
-
-  if((moldura.src === account_moldura.src) && (img_perfil.src === account_img_perfil.src) && (personagem.src === account_personagem.src)) {
+  if (
+    moldura.src === account_moldura.src &&
+    img_perfil.src === account_img_perfil.src &&
+    personagem.src === account_personagem.src
+  ) {
     return;
   }
 
-  if(perfilURL !== "nada") {
+  if (perfilURL !== "nada") {
     localStorage.setItem("URL", perfilURL);
     img_perfil.src = perfilURL;
-    if(moldura.src !== account_moldura.src || personagem.src !== account_personagem.src) {
+    if (
+      moldura.src !== account_moldura.src ||
+      personagem.src !== account_personagem.src
+    ) {
       var xml = new XMLHttpRequest();
       var data = JSON.stringify({
         MOLDURA: account_moldura.src,
@@ -520,7 +530,7 @@ btn_salvarEdit.addEventListener("click", () => {
       xml.setRequestHeader("Accept", "application/json");
       xml.onreadystatechange = function () {
         if (xml.readyState === 4 && xml.status === 200) {
-          if(mensagem.value !== "" && mensagem.value !== " ") {
+          if (mensagem.value !== "" && mensagem.value !== " ") {
             alert(mensagem.value);
           }
           procuraUser();
@@ -530,7 +540,7 @@ btn_salvarEdit.addEventListener("click", () => {
     }
     return;
   }
-  if(localStorage.URL) {
+  if (localStorage.URL) {
     localStorage.removeItem("URL");
   }
   var xml = new XMLHttpRequest();
@@ -549,7 +559,7 @@ btn_salvarEdit.addEventListener("click", () => {
   xml.setRequestHeader("Accept", "application/json");
   xml.onreadystatechange = function () {
     if (xml.readyState === 4 && xml.status === 200) {
-      if(mensagem.value !== "" && mensagem.value !== " ") {
+      if (mensagem.value !== "" && mensagem.value !== " ") {
         alert(mensagem.value);
       }
       procuraUser();
@@ -571,14 +581,13 @@ const inputFile = document.querySelector("#inputFile");
 inputFile.addEventListener("change", (e) => {
   const fileList = e.target.files;
 
-  for(const file of fileList)
-  {
-      const reader = new FileReader();
-      reader.addEventListener('load', (event) => {
-          account_img_perfil.style.height = `${account_img_perfil.clientWidth}px`;
-          account_img_perfil.src = event.target.result;
-          perfilURL = account_img_perfil.src;
-      });
-      reader.readAsDataURL(file);
+  for (const file of fileList) {
+    const reader = new FileReader();
+    reader.addEventListener("load", (event) => {
+      account_img_perfil.style.height = `${account_img_perfil.clientWidth}px`;
+      account_img_perfil.src = event.target.result;
+      perfilURL = account_img_perfil.src;
+    });
+    reader.readAsDataURL(file);
   }
 });
