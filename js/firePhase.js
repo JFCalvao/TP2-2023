@@ -305,12 +305,9 @@ function gameLoop(delta, fireball, direcao) {
       if(player.health === 0) {
         clearInterval(setIntervalId);
         clearInterval(scoreCounterId);
-<<<<<<< HEAD
         scoreTotal+= parseInt(scoreCounter);
         // console.log(scoreCounter);
         //e aqui voce colocar tipo o if(scoreCounter > usuario.scorecounter)
-=======
->>>>>>> 85784381044f37095b7e3ed9e6da950685319b45
         bossMusic.stop();
         createMenu();
       }
