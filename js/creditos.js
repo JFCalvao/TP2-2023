@@ -3,9 +3,9 @@ const porcentagemHTML = document.querySelector("#porcentagemHTML");
 const porcentagemCSS = document.querySelector("#porcentagemCSS");
 const porcentagemJS = document.querySelector("#porcentagemJS");
 
-let porHTML = 21.5;
-let porCSS = 34;
-let porJS = 44.5;
+let porHTML = 15.3;
+let porCSS = 26.5;
+let porJS = 58.2;
 
 porcentagemCSS.innerHTML = porCSS + "%";
 porcentagemJS.innerHTML = porJS + "%";
