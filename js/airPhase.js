@@ -13,6 +13,13 @@ const returnStyle = new PIXI.TextStyle({
   align: "center",
 });
 
+const topStyle = new PIXI.TextStyle({
+  fontFamily: "Georgia",
+  fontVariant: "small-caps",
+  fill: "#ffffff",
+  fontSize: screen.width * 0.0625
+})
+
 const app = new Application({
   width: window.innerWidth,
   height: window.innerHeight,
@@ -98,11 +105,11 @@ let setIntervalId;
 let scoreCounter;
 let scoreCounterId;
 
-const healthText = new PIXI.Text('Vida: 200', playStyle);
+const healthText = new PIXI.Text('Vida: 200', topStyle);
 healthText.x = screen.width / 2 + screen.width / 5;
 app.stage.addChild(healthText);
 
-const scoreText = new PIXI.Text('Score: 0', playStyle);
+const scoreText = new PIXI.Text('Score: 0', topStyle);
 app.stage.addChild(scoreText);
 
 function createMenu() {
