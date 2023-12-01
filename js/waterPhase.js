@@ -229,8 +229,9 @@ function createMenu() {
     scoreCounterId = setInterval(() => {
       scoreText.text = 'Score:' + ' ' + scoreCounter;
       scoreCounter++;
-      }, 1000)
+      }, 333)
       player.health = 200;
+      healthText.text = 'Vida: ' + player.health;
       bossMusic.play();
   });
 }
@@ -240,6 +241,7 @@ createMenu();
 
 function createWaterball() {
   const waterball = PIXI.Sprite.from("imagens/waterball.png");
+  waterball.gameState = 1;
   waterball.cont = 0;
   waterball.hitMark = 1;
   waterball.sound = 1;
@@ -330,6 +332,14 @@ function gameLoop(delta, waterball, direcao) {
         createMenu();
       }
     }
+  }
+
+  if(player.health === 0 && waterball.gameState === 1) {
+    waterball.sound = 0;
+    waterball.hitmark = 0;
+    waterball.cont++;
+    waterball.gameState = 0;
+    app.stage.removeChild(waterball);
   }
 }
 

@@ -231,6 +231,7 @@ function createMenu() {
       scoreCounter++;
       }, 1000)
       player.health = 200;
+      healthText.text = 'Vida: ' + player.health;
       bossMusic.play();
   });
 }
@@ -240,6 +241,7 @@ createMenu();
 
 function createRockball() {
   const rockball = PIXI.Sprite.from("imagens/rockball.png");
+  rockball.gameState = 1;
   rockball.cont = 0;
   rockball.hitMark = 1;
   rockball.sound = 1;
@@ -330,6 +332,15 @@ function gameLoop(delta, rockball, direcao) {
         createMenu();
       }
     }
+  }
+
+  if(player.health === 0 && rockball.gameState === 1)
+  {
+    rockball.hitMark = 0;
+    rockball.sound = 0;
+    rockball.cont++;
+    rockball.gameState = 0;
+    app.stage.removeChild(rockball);
   }
 }
 

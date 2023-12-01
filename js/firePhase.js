@@ -212,12 +212,13 @@ function createMenu() {
     app.stage.removeChild(menuText);
     setIntervalId = setInterval(createFireball, 300);
     scoreCounter = 0;
-    scoreText.text = 'Score: 0';
+    scoreText.text = 'Score: ' + scoreCounter;
     scoreCounterId = setInterval(() => {
     scoreText.text = 'Score:' + ' ' + scoreCounter;
-    scoreCounter++;
-    }, 1000)
+    scoreCounter ++;
+    }, 250)
     player.health = 200;
+    healthText.text = 'Vida: ' + player.health;
     bossMusic.play();
   });
 
@@ -229,6 +230,7 @@ createMenu();
 function createFireball() {
   const fireball = PIXI.Sprite.from("imagens/bolaDeFogo.png");
   fireball.cont = 0;
+  fireball.gameState = 1;
   fireball.hitMark = 1;
   fireball.sound = 1;
   fireball.anchor.set(0.5);
@@ -314,14 +316,21 @@ function gameLoop(delta, fireball, direcao) {
         clearInterval(setIntervalId);
         clearInterval(scoreCounterId);
         scoreTotal+= parseInt(scoreCounter) - 1;
-        // console.log(scoreCounter);
-        //e aqui voce colocar tipo o if(scoreCounter > usuario.scorecounter)
         bossMusic.stop();
         createMenu();
       }
-      
     }
   }
+
+  if(player.health === 0 && fireball.gameState === 1)
+  {
+    app.stage.removeChild(fireball);
+    fireball.gameState = 0;
+    fireball.hitmark = 0;
+    fireball.cont++;
+    fireball.sound = 0;
+  }
+  
 }
 
 //mecanica de colisao retangular entre os objetos a e b

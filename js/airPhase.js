@@ -229,8 +229,9 @@ function createMenu() {
     scoreCounterId = setInterval(() => {
       scoreText.text = 'Score:' + ' ' + scoreCounter;
       scoreCounter++;
-      }, 1000)
+      }, 333)
       player.health = 200;
+      healthText.text = 'Vida: ' + player.health;
       bossMusic.play();
     });
 }
@@ -332,6 +333,16 @@ function gameLoop(delta, airball, direcao) {
       }
     }
   }
+
+  if(player.health === 0 && airball.gameState === 1)
+  {
+    airball.sound = 0;
+    airball.cont++;
+    airball.hitmark = 0;
+    airball.gameState = 0;
+    app.stage.removeChild(airball);
+  }
+
 }
 
 //mecanica de colisao retangular entre os objetos a e b
