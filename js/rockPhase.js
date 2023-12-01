@@ -79,22 +79,22 @@ shield.angle = 180;
 //movimentacao do escudo
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowUp") {
+  if (e.key === "ArrowUp" || e.key === "w") {
     shield.angle = 180;
     shield.x = screen.width / 2;
     shield.y = screen.height / 3.3;
   }
-  if (e.key === "ArrowRight") {
+  if (e.key === "ArrowRight" || e.key === "d") {
     shield.angle = 270;
     shield.x = screen.width / 1.74;
     shield.y = screen.height / 2.3;
   }
-  if (e.key === "ArrowLeft") {
+  if (e.key === "ArrowLeft" || e.key === "a") {
     shield.angle = 90;
     shield.y = screen.height / 2.3;
     shield.x = screen.width / 2.35;
   }
-  if (e.key === "ArrowDown") {
+  if (e.key === "ArrowDown" || e.key === "s") {
     shield.y = screen.height / 1.75;
     shield.x = screen.width / 2;
     shield.angle = 360;
@@ -163,34 +163,42 @@ function createMenu() {
         aumento2 *= 10;
       }
     }
-
-    if (xpRankAtual >= expMaxRank) {
-        rankAtual++;
-        xpRankAtual = xpRankAtual - expMaxRank;
-      }
-      // console.log(rankAtual);
-      // console.log(xpRankAtual);
-      var xml = new XMLHttpRequest();
-      var data = JSON.stringify({
-        NIVEL_RANK: rankAtual,
-        EXP_RANK: xpRankAtual,
-      });
-      xml.open(
-        "PATCH",
-        "https://sheetdb.io/api/v1/pfuk22g9ujmao/USUARIO/" +
-          localStorage.getItem("USUARIO"),
-        true
-      );
-      xml.setRequestHeader("Content-type", "application/json");
-      xml.setRequestHeader("Accept", "application/json");
-      xml.onreadystatechange = function () {
-        if (xml.readyState === 4 && xml.status === 200) {
-          // alert(xml.responseText);
-          // alert(scoreTotal);
-          window.location = "index.html";
+    
+    while (xpRankAtual >= expMaxRank) {
+      rankAtual++;
+      xpRankAtual = xpRankAtual - expMaxRank;
+      expMaxRank = 100;
+      aumento1 = 400;
+      aumento2 = 500;
+      for (let i = 1; i < rankAtual; i++) {
+        if (i % 2 === 1) {
+          expMaxRank += aumento1;
+          aumento1 *= 10;
+        } else {
+          expMaxRank += aumento2;
+          aumento2 *= 10;
         }
-      };
-      xml.send(data);
+      }
+    }
+    var xml = new XMLHttpRequest();
+    var data = JSON.stringify({
+      NIVEL_RANK: rankAtual,
+      EXP_RANK: xpRankAtual,
+    });
+    xml.open(
+      "PATCH",
+      "https://sheetdb.io/api/v1/pfuk22g9ujmao/USUARIO/" +
+        localStorage.getItem("USUARIO"),
+      true
+    );
+    xml.setRequestHeader("Content-type", "application/json");
+    xml.setRequestHeader("Accept", "application/json");
+    xml.onreadystatechange = function () {
+      if (xml.readyState === 4 && xml.status === 200) {
+        window.location = "index.html";
+      }
+    };
+    xml.send(data);
   });
 
   const playText = new PIXI.Text("PLAY", playStyle);
@@ -282,16 +290,16 @@ function getRndInteger(min, max) {
 function gameLoop(delta, rockball, direcao) {
   switch (direcao) {
     case 0:
-      rockball.x -= 1;
+      rockball.x -= 3;
       break;
     case 1:
-      rockball.y += 1;
+      rockball.y += 2;
       break;
     case 2:
-      rockball.x += 1;
+      rockball.x += 3;
       break;
     case 3:
-      rockball.y -= 1;
+      rockball.y -= 2;
       break;
   }
 

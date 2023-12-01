@@ -11,8 +11,8 @@ function calculaScore(ranque, xp) {
     }
 
     let xpJaConquistado = 100;
-    let aumento1 = 400;
-    let aumento2 = 500;
+    let aumento1 = 500;
+    let aumento2 = 1000;
 
     for (let i = 1; i < ranque - 1; i++) {
         if (i % 2 === 1) {

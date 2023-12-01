@@ -149,13 +149,23 @@ function createMenu() {
         aumento2 *= 10;
       }
     }
-
-    if (xpRankAtual >= expMaxRank) {
+    
+    while (xpRankAtual >= expMaxRank) {
       rankAtual++;
       xpRankAtual = xpRankAtual - expMaxRank;
+      expMaxRank = 100;
+      aumento1 = 400;
+      aumento2 = 500;
+      for (let i = 1; i < rankAtual; i++) {
+        if (i % 2 === 1) {
+          expMaxRank += aumento1;
+          aumento1 *= 10;
+        } else {
+          expMaxRank += aumento2;
+          aumento2 *= 10;
+        }
+      }
     }
-    // console.log(rankAtual);
-    // console.log(xpRankAtual);
     var xml = new XMLHttpRequest();
     var data = JSON.stringify({
       NIVEL_RANK: rankAtual,
@@ -171,8 +181,6 @@ function createMenu() {
     xml.setRequestHeader("Accept", "application/json");
     xml.onreadystatechange = function () {
       if (xml.readyState === 4 && xml.status === 200) {
-        // alert(xml.responseText);
-        // alert(scoreTotal);
         window.location = "index.html";
       }
     };

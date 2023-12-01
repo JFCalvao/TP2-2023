@@ -89,7 +89,7 @@ function procuraUser() {
           if (
             listaData.table.rows[i].c[0].v ===
               localStorage.getItem("USUARIO") &&
-            listaData.table.rows[i].c[1].v === localStorage.getItem("SENHA")
+            listaData.table.rows[i].c[1].v === ("S" + localStorage.getItem("SENHA"))
           ) {
             encontrado++;
             localProcurar = i;

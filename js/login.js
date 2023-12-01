@@ -63,6 +63,8 @@ function logarAutomaticamente(usuario, senha) {
     localStorage.setItem("USUARIO", usuario);
     localStorage.setItem("SENHA", senha);
     localStorage.setItem("TEMA", "CLARO");
+    localStorage.setItem("VOLUME", "100");
+    localStorage.setItem("MUSICA", "100");
     window.location = "index.html";
   } else {
     localStorage.clear();
@@ -128,6 +130,8 @@ function checaSeContaExiste() {
 }
 
 function cadastraUser() {
+  let username = inputUsuario_cadastro.value;
+  let password = ("S" + inputPassword_cadastro.value);
   fetch("https://sheetdb.io/api/v1/pfuk22g9ujmao", {
     method: "post",
     headers: {
@@ -135,8 +139,8 @@ function cadastraUser() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      USUARIO: inputUsuario_cadastro.value,
-      SENHA: inputPassword_cadastro.value,
+      USUARIO: username,
+      SENHA: password,
       FOTO_PERFIL: "imagens/img-perfil.png",
       NIVEL_RANK: "1",
       EXP_RANK: "0",
@@ -145,8 +149,6 @@ function cadastraUser() {
       PERSONAGEM: "imgs-personagens/bolafumante.png",
     }),
     });
-    localStorage.setItem("VOLUME", "100");
-    localStorage.setItem("MUSICA", "100");
     logarAutomaticamente(
       inputUsuario_cadastro.value,
       inputPassword_cadastro.value
@@ -183,7 +185,7 @@ const getData = (event) => {
       for (let i = 0; i < listaData.table.rows.length; i++) {
         if (
           listaData.table.rows[i].c[0].v === inputUsuario.value &&
-          listaData.table.rows[i].c[1].v.toString() === inputPassword.value
+          listaData.table.rows[i].c[1].v.toString() === ("S" + inputPassword.value)
         ) {
           encontrado++;
           break;
