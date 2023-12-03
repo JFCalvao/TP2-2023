@@ -21,12 +21,92 @@ body {
   overflow: hidden;
 }
 
+.myAlert {
+  position: absolute;
+  top: 0.5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 3vh;
+  width: auto;
+  opacity: 0%;
+  padding: 0.6rem;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255, 0);
+  transition: all 0.3s ease;
+}
+
+.myAlert .info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.myAlert .info section {
+  grid-column: 2/2;
+}
+
+.myAlert .info h3 {
+  color: #EAE8E5;
+  margin: 0%;
+  font-size: 1.2rem;
+  font-weight: 600;
+  white-space: nowrap;
+  margin-right: 1rem;
+}
+
+.myAlert .info img {
+  grid-column: 1/1;
+  position: relative;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  left: 0%;
+  height: 125%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  border-radius: 0%;
+  pointer-events: none;
+  user-select: none;
+}
+
+.barraInferior {
+  position: absolute;
+  left: 0%;
+  width: 0%;
+  height: 0.2vh;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  height: 0.5vh;
+  bottom: 5%;
+  transition: all 1s ease-in-out;
+}
+
+#imgSuccess, #imgWarning, #imgError {
+  transition: all 0.15s ease;
+}
+
+.successFilter {
+  filter: drop-shadow(0px 0px 5px rgb(114, 230, 133));
+}
+
+.warningFilter {
+  filter: drop-shadow(0px 0px 5px rgb(230, 209, 114));
+}
+
+.errorFilter {
+  filter: drop-shadow(0px 0px 5px rgb(230, 131, 114));
+}
+
 .container-geral {
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 100%;
   justify-content: center;
+  overflow: hidden;
 }
 
 .tela-esquerda {
@@ -167,6 +247,7 @@ img {
 .personagem img {
   width: 22rem;
   max-width: 45vh;
+  border-radius: 0%;
 }
 
 .base {
@@ -274,6 +355,11 @@ img {
 .box1 {
   align-items: center;
   width: 18%;
+}
+
+.box1 img {
+  pointer-events: none;
+  user-select: none;
 }
 
 #account-imagem-do-Perfil {
@@ -676,7 +762,7 @@ input[type="file"] {
 #porcentagem-volume,
 #porcentagem-musica {
   display: grid;
-  width: 100%;
+  width: 56.25%;
   height: 100%;
 }
 
@@ -721,7 +807,7 @@ input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  background: linear-gradient(90deg, #41b8d5 100%, #eae8e5 0%);
+  background: linear-gradient(90deg, #41b8d5 50%, #eae8e5 50%);
   border-radius: 3rem;
   outline: none;
 }

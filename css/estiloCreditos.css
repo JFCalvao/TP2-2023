@@ -1,274 +1,346 @@
-html, body {
-    min-height: 100%;
-    min-width: 100%;
+html,
+body {
+  min-height: 100%;
+  min-width: 100%;
 }
 
 body {
-    margin: 0;
-    background-color: rgb(32, 27, 44);
-
+  margin: 0;
+  background-color: rgb(32, 27, 44);
 }
 
 header {
-    background-color: #2E2840;
-    height: 10vh;
-    text-align: center;
-    margin: 0;
+  background-color: #2e2840;
+  height: 10vh;
+  text-align: center;
+  margin: 0;
 }
 
 h1 {
-    color: rgb(114, 230, 133);
-    font-size: 4rem;
-    margin: 0;
+  color: rgb(114, 230, 133);
+  font-size: 4rem;
+  margin: 0;
+}
+
+.myAlert {
+  position: absolute;
+  top: 0.5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 3vh;
+  width: auto;
+  opacity: 0%;
+  padding: 0.6rem;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0);
+  transition: all 0.3s ease;
+}
+
+.myAlert .info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.myAlert .info section {
+  grid-column: 2/2;
+}
+
+.myAlert .info h3 {
+  color: #eae8e5;
+  margin: 0%;
+  font-size: 1.2rem;
+  font-weight: 600;
+  white-space: nowrap;
+  margin-right: 1rem;
+}
+
+.myAlert .info img {
+  grid-column: 1/1;
+  position: relative;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  left: 0%;
+  height: 125%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  border-radius: 0%;
+  pointer-events: none;
+  user-select: none;
+}
+
+.barraInferior {
+  position: absolute;
+  left: 0%;
+  width: 0%;
+  height: 0.2vh;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+  height: 0.5vh;
+  bottom: 5%;
+  transition: all 1s ease-in-out;
+}
+
+#imgSuccess,
+#imgWarning,
+#imgError {
+  transition: all 0.15s ease;
+}
+
+.successFilter {
+  filter: drop-shadow(0px 0px 5px rgb(114, 230, 133));
+}
+
+.warningFilter {
+  filter: drop-shadow(0px 0px 5px rgb(230, 209, 114));
+}
+
+.errorFilter {
+  filter: drop-shadow(0px 0px 5px rgb(230, 131, 114));
 }
 
 .img-personagemEasteregg {
-    position: absolute;
-    top: 2vh;
-    left: calc(11vh - 1rem);
-    transition: all 0.3s ease;
-    background: url("../imgs-personagens/personagemBrasil.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 2rem;
-    height: 2rem;
+  position: absolute;
+  top: 2vh;
+  left: calc(11vh - 1rem);
+  transition: all 0.3s ease;
+  background: url("../imgs-personagens/personagemBrasil.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 2rem;
+  height: 2rem;
 }
 
 .img-personagemEasteregg:hover {
-    transform: rotate(45deg);
-    left: calc(11vh - 0.5rem);
+  transform: rotate(45deg);
+  left: calc(11vh - 0.5rem);
 }
 .img-personagemEasteregg:active {
-    left: 12vh;
+  left: 12vh;
 }
 
 .div-imgRetorno {
-    position: absolute;
-    top: 1vh;
-    left: 3vh;
-    height: 8vh;
-    width: 8vh;
-    background: url("../imagens/botaoRetornar.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center center;
-    border-radius: 1.2rem;
-    -webkit-transition: transform 0.5s ease;
-    -moz-transition: transform 0.5s ease;
-    -o-transition: transform 0.5s ease;
-    transition: transform 0.5s ease;
-    cursor: pointer;
+  position: absolute;
+  top: 1vh;
+  left: 3vh;
+  height: 8vh;
+  width: 8vh;
+  background: url("../imagens/botaoRetornar.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  border-radius: 1.2rem;
+  -webkit-transition: transform 0.5s ease;
+  -moz-transition: transform 0.5s ease;
+  -o-transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
+  cursor: pointer;
 }
 
 content {
-    height: 90vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-content: center;
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
 .cards {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    align-content: center;
-    width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-content: center;
+  width: 90%;
 }
 
 .card {
-    width: 50vh;
-    height: 70vh;
+  width: 50vh;
+  height: 70vh;
 }
 
 .card-base {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, #2E2840 50%, #72E685 50%);
-    border-radius: 2rem;
-    display: grid;
-    grid-template-rows: 50% 50%;
-    grid-template-columns: auto;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #2e2840 50%, #72e685 50%);
+  border-radius: 2rem;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  grid-template-columns: auto;
+  align-items: center;
 }
 
 .card-img {
-    grid-row: 1/1;
-    background: linear-gradient(135deg, #19db3a, #3ae757, #72E685);
-    width: 100%;
-    height: 100%;
-    border-radius: 1.8rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  grid-row: 1/1;
+  background: linear-gradient(135deg, #19db3a, #3ae757, #72e685);
+  width: 100%;
+  height: 100%;
+  border-radius: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .card-img img {
-    border-radius: 50%;
-    width: 50%;
-    padding: 4px;
-    border: 0.4rem solid #EAE8E5;
-    pointer-events: none;
-    user-select: none;
+  border-radius: 50%;
+  width: 50%;
+  padding: 4px;
+  border: 0.4rem solid #eae8e5;
+  pointer-events: none;
+  user-select: none;
 }
 
 .card-info {
-    grid-row: 2/2;
-    width: 100%;
-    height: 100%;
-    background-color: #2E2840;
-    border-radius: 1.8rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: justify;
+  grid-row: 2/2;
+  width: 100%;
+  height: 100%;
+  background-color: #2e2840;
+  border-radius: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
 }
 
 .card-info p {
-    padding: 1.2rem;
-    font-family: sans-serif;
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: #EAE8E5;
+  padding: 1.2rem;
+  font-family: sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #eae8e5;
 }
 
 .infoGraphs {
-    width: 20%;
-    height: 70vh;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-content: center;
+  width: 20%;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
 }
 
 .graphs {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
-.info {
-    height: 25%;
-    width: 75%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-content: center;
-    overflow: hidden;
+.graphs .info {
+  height: 25%;
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  overflow: hidden;
 }
 
 .range {
-    height: 25vh;
-    width: 25vh;
-    margin-top: 65%;
-    position: relative;
-    overflow: hidden;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0px 0px 15px black;
+  height: 25vh;
+  width: 25vh;
+  margin-top: 65%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 15px black;
 }
 
 #rangeHTML::before {
-    content: "";
-    background-image: conic-gradient(
-        #c4c3c3a8 50%,
-        rgb(252,98,81) 50%
-    );
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    border-radius: 50%;
-    transition: all 0.5s ease;
+  content: "";
+  background-image: conic-gradient(#c4c3c3a8 50%, rgb(252, 98, 81) 50%);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  transition: all 0.5s ease;
 }
 
 #rangeCSS::before {
-    /* transform: rotate(-87deg); */
-    content: "";
-    background-image: conic-gradient(
-        #c4c3c3a8 50%,
-        rgb(103,148,233) 50%
-    );
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    border-radius: 50%;
-    transition: all 0.5s ease;
+  /* transform: rotate(-87deg); */
+  content: "";
+  background-image: conic-gradient(#c4c3c3a8 50%, rgb(103, 148, 233) 50%);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  transition: all 0.5s ease;
 }
 
 #rangeJS::before {
-    /* transform: rotate(-87deg); */
-    content: "";
-    background-image: conic-gradient(
-        #c4c3c3a8 50%,
-        rgb(255,193,7) 50%
-    );
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    border-radius: 50%;
-    transition: all 0.5s ease;
+  /* transform: rotate(-87deg); */
+  content: "";
+  background-image: conic-gradient(#c4c3c3a8 50%, rgb(255, 193, 7) 50%);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 50%;
+  transition: all 0.5s ease;
 }
 
 .range::after {
-    content: "";
-    width: 85%;
-    height: 85%;
-    position: absolute;
-    background-color: rgb(32, 27, 44);
-    border-radius: 50%;
-    box-shadow: 0 0px 10px black;
+  content: "";
+  width: 85%;
+  height: 85%;
+  position: absolute;
+  background-color: rgb(32, 27, 44);
+  border-radius: 50%;
+  box-shadow: 0 0px 10px black;
 }
 
 .rangeName {
-    position: absolute;
-    font-size: 2.5rem;
-    font-weight: 600;
-    font-family: sans-serif;
-    align-self: flex-start;
-    margin: 0;
+  position: absolute;
+  font-size: 2.5rem;
+  font-weight: 600;
+  font-family: sans-serif;
+  align-self: flex-start;
+  margin: 0;
 }
 
 .rangePorcentagem {
-    position: absolute;
-    font-size: 2.5rem;
-    font-weight: 600;
-    font-family: sans-serif;
-    align-self: flex-end;
-    margin: 0;
-    color: #EAE8E5;
+  position: absolute;
+  font-size: 2.5rem;
+  font-weight: 600;
+  font-family: sans-serif;
+  align-self: flex-end;
+  margin: 0;
+  color: #eae8e5;
 }
 
 #nameHTML {
-    color: rgb(253, 87, 68);
+  color: rgb(253, 87, 68);
 }
 
 #nameCSS {
-    color: rgb(85, 137, 235);
+  color: rgb(85, 137, 235);
 }
 
 #nameJS {
-    color: rgb(255, 230, 7);
+  color: rgb(255, 230, 7);
 }
 
 @media (max-height: 700px) {
-    .card-info p {
-        font-size: 1.2rem;
-    }
+  .card-info p {
+    font-size: 1.2rem;
+  }
 
-    .rangeName {
-        font-size: 2rem;
-    }
+  .rangeName {
+    font-size: 2rem;
+  }
 
-    .rangePorcentagem {
-        font-size: 2rem;
-    }
+  .rangePorcentagem {
+    font-size: 2rem;
+  }
 }

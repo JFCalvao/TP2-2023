@@ -57,18 +57,22 @@ const input_confirm_Password = document.querySelector(
   "#input-confirm-password"
 );
 
-function logarAutomaticamente(usuario, senha) {
+// meu alert
+const myAlert = document.querySelector(".myAlert");
+const myAlertInfo = document.querySelector(".myAlert .info");
+const alertBar = document.querySelector(".barraInferior");
+let alertEmExecucao = 0;
+
+function logarAutomaticamente(usuario, senha, texto) {
   localStorage.clear();
-  if (window.confirm("Deseja logar na conta?")) {
+  successAlert("Conta " + texto + " com sucesso", () => {
     localStorage.setItem("USUARIO", usuario);
     localStorage.setItem("SENHA", senha);
     localStorage.setItem("TEMA", "CLARO");
-    localStorage.setItem("VOLUME", "100");
-    localStorage.setItem("MUSICA", "100");
+    localStorage.setItem("VOLUME", "50");
+    localStorage.setItem("MUSICA", "50");
     window.location = "index.html";
-  } else {
-    localStorage.clear();
-  }
+  });
 }
 
 const handleSubmit = (event) => {
@@ -79,12 +83,11 @@ const handleSubmit = (event) => {
     inputPassword_cadastro.value === "" ||
     inputPassword_cadastro.value !== input_confirm_Password.value
   ) {
-    window.alert("Coloque as duas senhas iguais!");
+    warningAlert("Coloque as duas senhas iguais!");
     return;
   }
-  
-  checaSeContaExiste()
-  
+
+  checaSeContaExiste();
 };
 
 document.querySelector("#formPost").addEventListener("submit", handleSubmit);
@@ -114,10 +117,8 @@ function checaSeContaExiste() {
       let listaData = JSON.parse(listaResponse.substr(47).slice(0, -2));
 
       for (let i = 0; i < listaData.table.rows.length; i++) {
-        if (
-          listaData.table.rows[i].c[0].v === inputUsuario_cadastro.value
-        ) {
-          alert("essa conta já existe!!!");
+        if (listaData.table.rows[i].c[0].v === inputUsuario_cadastro.value) {
+          errorAlert("essa conta já existe!!!");
           return 1;
         }
       }
@@ -131,7 +132,7 @@ function checaSeContaExiste() {
 
 function cadastraUser() {
   let username = inputUsuario_cadastro.value;
-  let password = ("S" + inputPassword_cadastro.value);
+  let password = "S" + inputPassword_cadastro.value;
   fetch("https://sheetdb.io/api/v1/pfuk22g9ujmao", {
     method: "post",
     headers: {
@@ -148,11 +149,12 @@ function cadastraUser() {
       MOLDURA: "imagens/imagem-sem-nada.webp",
       PERSONAGEM: "imgs-personagens/bolafumante.png",
     }),
-    });
-    logarAutomaticamente(
-      inputUsuario_cadastro.value,
-      inputPassword_cadastro.value
-    );
+  });
+  logarAutomaticamente(
+    inputUsuario_cadastro.value,
+    inputPassword_cadastro.value,
+    "cadastrada"
+  );
 }
 
 let encontrado = 0;
@@ -185,7 +187,8 @@ const getData = (event) => {
       for (let i = 0; i < listaData.table.rows.length; i++) {
         if (
           listaData.table.rows[i].c[0].v === inputUsuario.value &&
-          listaData.table.rows[i].c[1].v.toString() === ("S" + inputPassword.value)
+          listaData.table.rows[i].c[1].v.toString() ===
+            "S" + inputPassword.value
         ) {
           encontrado++;
           break;
@@ -193,12 +196,12 @@ const getData = (event) => {
       }
 
       if (encontrado === 0) {
-        window.alert("Essa conta não existe!!!");
+        errorAlert("Essa conta não existe!!!");
         inputPassword.value = "";
         return;
       } else if (encontrado === 1) {
         //o que eu quero que faca
-        logarAutomaticamente(inputUsuario.value, inputPassword.value);
+        logarAutomaticamente(inputUsuario.value, inputPassword.value, "logada");
       }
     }
   });
@@ -209,12 +212,122 @@ document.querySelector("#formGet").addEventListener("submit", getData);
 const btnRetornar = document.querySelector(".div-imgRetorno");
 
 btnRetornar.addEventListener("click", () => {
-    btnRetornar.style.webkitTransform = "rotate(-360deg)";
-    btnRetornar.style.mozTransform = "rotate(-360deg)";
-    btnRetornar.style.msTransform = "rotate(-360deg)";
-    btnRetornar.style.oTransform = "rotate(-360deg)";
-    btnRetornar.style.transform = "rotate(-360deg)";
-    setTimeout(() => {
-        window.location = "index.html"
-    }, 500);
+  btnRetornar.style.webkitTransform = "rotate(-360deg)";
+  btnRetornar.style.mozTransform = "rotate(-360deg)";
+  btnRetornar.style.msTransform = "rotate(-360deg)";
+  btnRetornar.style.oTransform = "rotate(-360deg)";
+  btnRetornar.style.transform = "rotate(-360deg)";
+  setTimeout(() => {
+    window.location = "index.html";
+  }, 500);
 });
+
+function successAlert(text, doSomething) {
+  if(alertEmExecucao) {
+    return;
+  }
+  alertEmExecucao = 1;
+
+  myAlertInfo.innerHTML = `<img id="imgSuccess" src="imagens/circular3points.png"><section><h3>${text}</h3></section><div class="barraInferior"></div>`;
+  myAlert.style.backgroundColor = "rgb(91, 82, 117)";
+  myAlert.style.opacity = "100%";
+  alertBar.style.backgroundColor = "rgb(114, 230, 133)";
+
+  setTimeout(() => {
+    alertBar.style.width = "95%";
+    setTimeout(() => {
+      let imgAlert = document.querySelector("#imgSuccess");
+      imgAlert.classList.add("successFilter");
+      imgAlert.style.rotate = "180deg";
+      setTimeout(() => {
+        imgAlert.src = "imagens/success.svg";
+        imgAlert.style.rotate = "360deg";
+      }, 150);
+    }, 1000);
+  }, 350);
+
+  setTimeout(() => {
+    if(doSomething) {
+      doSomething();
+    }
+    else {
+      myAlert.style.opacity = "0%";
+      setTimeout(() => {
+        alertBar.style.width = "0%";
+      }, 100);
+      setTimeout(() => {
+        alertEmExecucao = 0;
+      }, 1000);
+    }
+  }, 2500);
+}
+
+function warningAlert(text) {
+  if(alertEmExecucao) {
+    return;
+  }
+  alertEmExecucao = 1;
+
+  myAlertInfo.innerHTML = `<img id="imgWarning" src="imagens/warningWait.svg"><section><h3>${text}</h3></section><div class="barraInferior"></div>`;
+  myAlert.style.backgroundColor = "rgb(91, 82, 117)";
+  myAlert.style.opacity = "100%";
+  alertBar.style.backgroundColor = "rgb(230, 209, 114)";
+  
+  setTimeout(() => {
+    alertBar.style.width = "95%";
+    setTimeout(() => {
+      let imgAlert = document.querySelector("#imgWarning");
+      imgAlert.classList.add("warningFilter");
+      imgAlert.style.rotate = "180deg";
+      setTimeout(() => {
+        imgAlert.src = "imagens/warning.svg";
+        imgAlert.style.rotate = "360deg";
+      }, 150);
+    }, 1000);
+  }, 350);
+
+  setTimeout(() => {
+    myAlert.style.opacity = "0%";
+    setTimeout(() => {
+      alertBar.style.width = "0%";
+    }, 100);
+    setTimeout(() => {
+      alertEmExecucao = 0;
+    }, 1000);
+  }, 2500);
+}
+
+function errorAlert(text) {
+  if(alertEmExecucao) {
+    return;
+  }
+  alertEmExecucao = 1;
+
+  myAlertInfo.innerHTML = `<img id="imgError" src="imagens/circle-error.svg"><section><h3>${text}</h3></section><div class="barraInferior"></div>`;
+  myAlert.style.backgroundColor = "rgb(91, 82, 117)";
+  myAlert.style.opacity = "100%";
+  alertBar.style.backgroundColor = "rgb(230, 131, 114)";
+  
+  setTimeout(() => {
+    alertBar.style.width = "95%";
+    setTimeout(() => {
+      let imgAlert = document.querySelector("#imgError");
+      imgAlert.classList.add("errorFilter");
+      imgAlert.style.rotate = "180deg";
+      setTimeout(() => {
+        imgAlert.src = "imagens/error.svg";
+        imgAlert.style.rotate = "360deg";
+      }, 150);
+    }, 1000);
+  }, 350);
+
+  setTimeout(() => {
+    myAlert.style.opacity = "0%";
+    setTimeout(() => {
+      alertBar.style.width = "0%";
+    }, 100);
+    setTimeout(() => {
+      alertEmExecucao = 0;
+    }, 1000);
+  }, 2500);
+}

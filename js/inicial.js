@@ -89,7 +89,8 @@ function procuraUser() {
           if (
             listaData.table.rows[i].c[0].v ===
               localStorage.getItem("USUARIO") &&
-            listaData.table.rows[i].c[1].v === ("S" + localStorage.getItem("SENHA"))
+            listaData.table.rows[i].c[1].v ===
+              "S" + localStorage.getItem("SENHA")
           ) {
             encontrado++;
             localProcurar = i;
@@ -98,7 +99,8 @@ function procuraUser() {
         }
 
         if (encontrado === 0) {
-          window.alert("Essa conta não existe!");
+          errorAlert("Essa conta não existe!");
+          localStorage.clear();
           return;
         } else if (encontrado === 1) {
           //o que eu quero que faca
@@ -130,7 +132,14 @@ function procuraUser() {
 }
 procuraUser();
 
+// meu alert
+const myAlert = document.querySelector(".myAlert");
+const myAlertInfo = document.querySelector(".myAlert .info");
+const alertBar = document.querySelector(".barraInferior");
+let alertEmExecucao = 0;
+
 let expMaxRank = 100;
+
 function iniciaPerfil() {
   expMaxRank = 100;
   let aumento1 = 400;
@@ -149,7 +158,7 @@ function iniciaPerfil() {
       aumento2 *= 10;
     }
   }
-  
+
   localStorage.setItem("RANK-EXP", statusPersonagem.rankExp);
   localStorage.setItem("NIVEL-RANK", statusPersonagem.nivelRank);
 
@@ -182,8 +191,7 @@ function iniciaPerfil() {
   if (localStorage.Brasil) {
     easterEggImg.style.pointerEvents = "all";
     easterEggImg.src = localStorage.getItem("Brasil");
-  }
-  else {
+  } else {
     easterEggImg.style.pointerEvents = "none";
   }
   h2_rank.innerHTML = statusPersonagem.rankExp + "/" + expMaxRank;
@@ -323,7 +331,7 @@ perfilImgsPersonagem[4].addEventListener("click", () => {
 btn_sair.addEventListener("click", deslogar);
 function deslogar() {
   if (!localStorage.USUARIO || !localStorage.SENHA || !localStorage.TEMA) {
-    window.alert("Você já está deslogado!");
+    errorAlert("Você já está deslogado!");
     return;
   }
 
@@ -333,6 +341,13 @@ function deslogar() {
   statusPersonagem.vida = 200;
   userName.innerHTML = "username";
   img_perfil.src = "imagens/img-perfil.png";
+  moldura.src = "imagens/imagem-sem-nada.webp";
+  personagem.src = "imgs-personagens/bolafumante.png";
+  account_moldura.src = moldura.src;
+  account_moldura.style.height = `${account_moldura.clientWidth}px`;
+  account_img_perfil.src = img_perfil.src;
+  mensagem.value = "";
+  account_personagem.src = personagem.src;
   iniciaPerfil();
 }
 
@@ -364,9 +379,8 @@ function temaClaro() {
   tema_escuro.style.border = "0px solid white";
   tema_escuro.style.transform = "scale(1)";
   tema = 1;
-  if (localStorage.USUARIO && localStorage.SENHA && localStorage.TEMA) {
-    localStorage.setItem("TEMA", "CLARO");
-  }
+  localStorage.setItem("TEMA", "CLARO");
+  myAlert.style.border = "2px solid rgba(255,255,255, 0)";
 }
 
 tema_escuro.addEventListener("click", temaEscuro);
@@ -400,14 +414,14 @@ function temaEscuro() {
   tema_claro.style.border = "0px solid black";
   tema_claro.style.transform = "scale(1)";
   tema = 0;
-  if (localStorage.USUARIO && localStorage.SENHA && localStorage.TEMA) {
-    localStorage.setItem("TEMA", "ESCURO");
-  }
+  localStorage.setItem("TEMA", "ESCURO");
+  myAlert.style.border = "2px solid rgba(255,255,255, 1)";
 }
 
 btn_play.addEventListener("click", function () {
   if (!localStorage.USUARIO) {
-    window.alert("Logue antes de tentar jogar!");
+    errorAlert("Logue antes de tentar jogar!");
+    // window.alert("Logue antes de tentar jogar!");
     return;
   }
 
@@ -439,6 +453,115 @@ btn_play.addEventListener("click", function () {
   // };
   // xml.send(data);
 });
+
+function successAlert(text, doSomething) {
+  if (alertEmExecucao) {
+    return;
+  }
+  alertEmExecucao = 1;
+
+  myAlertInfo.innerHTML = `<img id="imgSuccess" src="imagens/circular3points.png"><section><h3>${text}</h3></section><div class="barraInferior"></div>`;
+  myAlert.style.backgroundColor = "rgb(91, 82, 117)";
+  myAlert.style.opacity = "100%";
+  alertBar.style.backgroundColor = "rgb(114, 230, 133)";
+
+  setTimeout(() => {
+    alertBar.style.width = "95%";
+    setTimeout(() => {
+      let imgAlert = document.querySelector("#imgSuccess");
+      imgAlert.classList.add("successFilter");
+      imgAlert.style.rotate = "180deg";
+      setTimeout(() => {
+        imgAlert.src = "imagens/success.svg";
+        imgAlert.style.rotate = "360deg";
+      }, 150);
+    }, 1000);
+  }, 350);
+
+  setTimeout(() => {
+    if (doSomething) {
+      doSomething();
+    } else {
+      myAlert.style.opacity = "0%";
+      setTimeout(() => {
+        alertBar.style.width = "0%";
+      }, 100);
+      setTimeout(() => {
+        alertEmExecucao = 0;
+      }, 1000);
+    }
+  }, 2500);
+}
+
+function warningAlert(text) {
+  if (alertEmExecucao) {
+    return;
+  }
+  alertEmExecucao = 1;
+
+  myAlertInfo.innerHTML = `<img id="imgWarning" src="imagens/warningWait.svg"><section><h3>${text}</h3></section><div class="barraInferior"></div>`;
+  myAlert.style.backgroundColor = "rgb(91, 82, 117)";
+  myAlert.style.opacity = "100%";
+  alertBar.style.backgroundColor = "rgb(230, 209, 114)";
+
+  setTimeout(() => {
+    alertBar.style.width = "95%";
+    setTimeout(() => {
+      let imgAlert = document.querySelector("#imgWarning");
+      imgAlert.classList.add("warningFilter");
+      imgAlert.style.rotate = "180deg";
+      setTimeout(() => {
+        imgAlert.src = "imagens/warning.svg";
+        imgAlert.style.rotate = "360deg";
+      }, 150);
+    }, 1000);
+  }, 350);
+
+  setTimeout(() => {
+    myAlert.style.opacity = "0%";
+    setTimeout(() => {
+      alertBar.style.width = "0%";
+    }, 100);
+    setTimeout(() => {
+      alertEmExecucao = 0;
+    }, 1000);
+  }, 2500);
+}
+
+function errorAlert(text) {
+  if (alertEmExecucao) {
+    return;
+  }
+  alertEmExecucao = 1;
+
+  myAlertInfo.innerHTML = `<img id="imgError" src="imagens/circle-error.svg"><section><h3>${text}</h3></section><div class="barraInferior"></div>`;
+  myAlert.style.backgroundColor = "rgb(91, 82, 117)";
+  myAlert.style.opacity = "100%";
+  alertBar.style.backgroundColor = "rgb(230, 131, 114)";
+
+  setTimeout(() => {
+    alertBar.style.width = "95%";
+    setTimeout(() => {
+      let imgAlert = document.querySelector("#imgError");
+      imgAlert.classList.add("errorFilter");
+      imgAlert.style.rotate = "180deg";
+      setTimeout(() => {
+        imgAlert.src = "imagens/error.svg";
+        imgAlert.style.rotate = "360deg";
+      }, 150);
+    }, 1000);
+  }, 350);
+
+  setTimeout(() => {
+    myAlert.style.opacity = "0%";
+    setTimeout(() => {
+      alertBar.style.width = "0%";
+    }, 100);
+    setTimeout(() => {
+      alertEmExecucao = 0;
+    }, 1000);
+  }, 2500);
+}
 
 const ocupaBotaoCarrinho = document.querySelector("#ocupa-botao-carrinho");
 const ocupaBotaoCarrinho_div = document.querySelector(
@@ -507,7 +630,7 @@ const mensagem = document.querySelector("#mensagem");
 let perfilURL = "nada";
 btn_salvarEdit.addEventListener("click", () => {
   if (!localStorage.getItem("USUARIO")) {
-    alert("Logue primeiro!");
+    warningAlert("Logue para poder editar o perfil!");
     return;
   }
 
@@ -542,7 +665,7 @@ btn_salvarEdit.addEventListener("click", () => {
       xml.onreadystatechange = function () {
         if (xml.readyState === 4 && xml.status === 200) {
           if (mensagem.value !== "" && mensagem.value !== " ") {
-            alert(mensagem.value);
+            successAlert(mensagem.value);
           }
           procuraUser();
         }
@@ -571,7 +694,7 @@ btn_salvarEdit.addEventListener("click", () => {
   xml.onreadystatechange = function () {
     if (xml.readyState === 4 && xml.status === 200) {
       if (mensagem.value !== "" && mensagem.value !== " ") {
-        alert(mensagem.value);
+        successAlert(mensagem.value);
       }
       procuraUser();
     }

@@ -82,9 +82,27 @@ btnRetornar.addEventListener("click", () => {
     }, 500);
 });
 
+// meu alert
+const myAlert = document.querySelector(".myAlert");
+const myAlertInfo = document.querySelector(".myAlert .info");
+const alertBar = document.querySelector(".barraInferior");
+let alertEmExecucao = 0;
+
 const easterEgg = document.querySelector(".img-personagemEasteregg");
 
 easterEgg.addEventListener("click", () => {
+
+    if(!localStorage.USUARIO) {
+        errorAlert("Logue para desbloquear o easterEgg");
+        return;
+    }
+
+    if(localStorage.Brasil) {
+        easterEgg.style.opacity = "0%";
+        localStorage.setItem("Brasil", "imgs-personagens/personagemBrasil.png");
+        successAlert("Você ganhou uma nova skin denovo!!!");
+    }
+
     easterEgg.style.opacity = "0%";
     localStorage.setItem("Brasil", "imgs-personagens/personagemBrasil.png");
     var data = JSON.stringify({
@@ -102,8 +120,117 @@ easterEgg.addEventListener("click", () => {
     ajax.setRequestHeader("Accept", "application/json");
     ajax.addEventListener("readystatechange", () => {
         if(ajax.readyState === 4 && ajax.status === 200) {
-            alert("Parabéns!!! Você ganhou uma nova skin!!");
+            successAlert("Parabéns!!! Você ganhou uma nova skin!!");
         }
     });
     ajax.send(data);
 });
+
+function successAlert(text, doSomething) {
+    if (alertEmExecucao) {
+      return;
+    }
+    alertEmExecucao = 1;
+  
+    myAlertInfo.innerHTML = `<img id="imgSuccess" src="imagens/circular3points.png"><section><h3>${text}</h3></section><div class="barraInferior"></div>`;
+    myAlert.style.backgroundColor = "rgb(91, 82, 117)";
+    myAlert.style.opacity = "100%";
+    alertBar.style.backgroundColor = "rgb(114, 230, 133)";
+  
+    setTimeout(() => {
+      alertBar.style.width = "95%";
+      setTimeout(() => {
+        let imgAlert = document.querySelector("#imgSuccess");
+        imgAlert.classList.add("successFilter");
+        imgAlert.style.rotate = "180deg";
+        setTimeout(() => {
+          imgAlert.src = "imagens/success.svg";
+          imgAlert.style.rotate = "360deg";
+        }, 150);
+      }, 1000);
+    }, 350);
+  
+    setTimeout(() => {
+      if (doSomething) {
+        doSomething();
+      } else {
+        myAlert.style.opacity = "0%";
+        setTimeout(() => {
+          alertBar.style.width = "0%";
+        }, 100);
+        setTimeout(() => {
+          alertEmExecucao = 0;
+        }, 1000);
+      }
+    }, 2500);
+  }
+  
+  function warningAlert(text) {
+    if (alertEmExecucao) {
+      return;
+    }
+    alertEmExecucao = 1;
+  
+    myAlertInfo.innerHTML = `<img id="imgWarning" src="imagens/warningWait.svg"><section><h3>${text}</h3></section><div class="barraInferior"></div>`;
+    myAlert.style.backgroundColor = "rgb(91, 82, 117)";
+    myAlert.style.opacity = "100%";
+    alertBar.style.backgroundColor = "rgb(230, 209, 114)";
+  
+    setTimeout(() => {
+      alertBar.style.width = "95%";
+      setTimeout(() => {
+        let imgAlert = document.querySelector("#imgWarning");
+        imgAlert.classList.add("warningFilter");
+        imgAlert.style.rotate = "180deg";
+        setTimeout(() => {
+          imgAlert.src = "imagens/warning.svg";
+          imgAlert.style.rotate = "360deg";
+        }, 150);
+      }, 1000);
+    }, 350);
+  
+    setTimeout(() => {
+      myAlert.style.opacity = "0%";
+      setTimeout(() => {
+        alertBar.style.width = "0%";
+      }, 100);
+      setTimeout(() => {
+        alertEmExecucao = 0;
+      }, 1000);
+    }, 2500);
+  }
+  
+  function errorAlert(text) {
+    if (alertEmExecucao) {
+      return;
+    }
+    alertEmExecucao = 1;
+  
+    myAlertInfo.innerHTML = `<img id="imgError" src="imagens/circle-error.svg"><section><h3>${text}</h3></section><div class="barraInferior"></div>`;
+    myAlert.style.backgroundColor = "rgb(91, 82, 117)";
+    myAlert.style.opacity = "100%";
+    alertBar.style.backgroundColor = "rgb(230, 131, 114)";
+  
+    setTimeout(() => {
+      alertBar.style.width = "95%";
+      setTimeout(() => {
+        let imgAlert = document.querySelector("#imgError");
+        imgAlert.classList.add("errorFilter");
+        imgAlert.style.rotate = "180deg";
+        setTimeout(() => {
+          imgAlert.src = "imagens/error.svg";
+          imgAlert.style.rotate = "360deg";
+        }, 150);
+      }, 1000);
+    }, 350);
+  
+    setTimeout(() => {
+      myAlert.style.opacity = "0%";
+      setTimeout(() => {
+        alertBar.style.width = "0%";
+      }, 100);
+      setTimeout(() => {
+        alertEmExecucao = 0;
+      }, 1000);
+    }, 2500);
+  }
