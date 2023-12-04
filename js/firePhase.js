@@ -92,10 +92,7 @@ inputmusica.addEventListener("mousemove", () => {
 
   if (valMusicaAnterior !== inputmusica.value) {
     localStorage.setItem("MUSICA", inputmusica.value);
-    bossMusic = new Howl({
-      src: ["sons/fireMusic.wav"],
-      volume: localStorage.getItem("MUSICA") / 100,
-    });
+    bossMusic.volume(localStorage.getItem("MUSICA") / 100);
   }
   valMusicaAnterior = inputmusica.value;
 });
@@ -124,16 +121,8 @@ inputvolume.addEventListener("mousemove", () => {
 
   if (valVolumeAnterior !== inputvolume.value) {
     localStorage.setItem("VOLUME", inputvolume.value);
-    shieldhitSound = new Howl({
-      src: ["sons/hitSound.wav"],
-      autoplay: false,
-      volume: localStorage.getItem("VOLUME") / 100,
-    });
-    playerhitSound = new Howl({
-      src: ["sons/somDeMorte.wav"],
-      autoplay: false,
-      volume: localStorage.getItem("VOLUME") / 100,
-    });
+    shieldhitSound.volume(localStorage.getItem("VOLUME") / 100);
+    playerhitSound.volume(localStorage.getItem("VOLUME") / 100);
   }
   valVolumeAnterior = inputvolume.value;
 });
