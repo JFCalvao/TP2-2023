@@ -1,19 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bioma de Fogo</title>
-        <style>
-            * {
-                padding: 0;
-                margin: 0;
-            }
-        </style>
-</head>
-    <body>
-        <script src="js/node_modules/howler/dist/howler.min.js"></script>
-        <script src="js/node_modules/pixi.js/dist/pixi.min.js"></script>
-        <script src="js/firePhase.js"></script>
-    </body>
+    <style>
+        html, body {
+            min-height: 100%;
+        }
+
+        body {
+            height: 100%;
+        }
+
+        canvas {
+            /* height: 100%; */
+            width: 100vw;
+        }
+
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      #containerTop {
+        position: absolute;
+        width: 100vw;
+        height: auto;
+        z-index: 10;
+        background-color: transparent;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+      }
+
+      #menu {
+        height: 100%;
+        width: 25%;
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+        padding-top: 0.5%;
+      }
+
+      #menu .box1Menu {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        width: 100%;
+        height: 100%;
+      }
+
+      #menu #returnToMap,
+      #menu #btnEditSounds {
+        background-color: #eae8e5;
+        padding: 0.5rem;
+        border-radius: 2rem;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      #menu #returnToMap:hover,
+      #menu #btnEditSounds:hover {
+        background-color: #cac8c6;
+      }
+
+      #editItens {
+        display: none;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: row;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        width: 100%;
+        transition: all 0.3s ease;
+      }
+
+      label {
+        color: white;
+        font-size: 1rem;
+        font-weight: 700;
+        font-family: sans-serif;
+        width: 100%;
+        text-align: center;
+      }
+
+      #porcentagem-volume,
+      #porcentagem-musica {
+        display: grid;
+        /* width: 22.5%; */
+        width: 59.75%;
+        height: 100%;
+      }
+
+      #porcentagem-volume h3,
+      #porcentagem-musica h3 {
+        color: black;
+        position: fixed;
+        align-self: center;
+        justify-self: flex-end;
+        z-index: 1;
+        font-size: 0.7rem;
+        font-weight: 700;
+        font-family: sans-serif;
+        pointer-events: none;
+        top: calc(3.5rem + 0.5% + 1.25rem);
+      }
+
+      input[type="range"]::-webkit-slider-runnable-track {
+        height: 1.5rem;
+        -ms-appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -ms-appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 1.5rem;
+        width: 1.5rem;
+        background-color: #8b8b8b;
+        border-radius: 50%;
+        transform: scale(1.2);
+      }
+
+      input[type="range"]::-webkit-slider-thumb:hover {
+        box-shadow: 0px 0px 15px black;
+      }
+
+      input[type="range"] {
+        -ms-appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        background: linear-gradient(90deg, #41b8d5 50%, #eae8e5 50%);
+        border-radius: 1.5rem;
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <article id="containerTop">
+      <section id="menu">
+        <section class="box1Menu">
+          <div id="returnToMap">Retorne ao mapa</div>
+          <div id="btnEditSounds">Editar volume e música</div>
+        </section>
+        <div id="editItens">
+          <div class="boxInput">
+            <label for="music"
+              >MUSICA
+              <div id="porcentagem-musica">
+                <h3>50%</h3>
+              </div>
+            </label>
+            <input type="range" id="music" min="0" max="100" />
+          </div>
+          <div class="boxInput">
+            <label for="vol"
+              >VOLUME
+              <div id="porcentagem-volume">
+                <h3>50%</h3>
+              </div>
+            </label>
+            <input type="range" id="vol" min="0" max="100" />
+          </div>
+        </div>
+      </section>
+    </article>
+    <script src="js/node_modules/howler/dist/howler.min.js"></script>
+    <script src="js/node_modules/pixi.js/dist/pixi.min.js"></script>
+    <script src="js/firePhase.js"></script>
+  </body>
 </html>
