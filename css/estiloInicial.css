@@ -31,7 +31,7 @@ body {
   opacity: 0%;
   padding: 0.6rem;
   overflow: hidden;
-  border: 2px solid rgba(255,255,255, 0);
+  border: 2px solid rgba(255, 255, 255, 0);
   transition: all 0.3s ease;
 }
 
@@ -49,7 +49,7 @@ body {
 }
 
 .myAlert .info h3 {
-  color: #EAE8E5;
+  color: #eae8e5;
   margin: 0%;
   font-size: 1.2rem;
   font-weight: 600;
@@ -84,7 +84,9 @@ body {
   transition: all 1s ease-in-out;
 }
 
-#imgSuccess, #imgWarning, #imgError {
+#imgSuccess,
+#imgWarning,
+#imgError {
   transition: all 0.15s ease;
 }
 
@@ -344,7 +346,7 @@ img {
 .account-box {
   width: 100%;
   height: 25%;
-  border: 5px solid #EAE8E5;
+  border: 5px solid #eae8e5;
   border-radius: 1.6rem;
   display: flex;
   flex-direction: row;
@@ -363,11 +365,11 @@ img {
 }
 
 #account-imagem-do-Perfil {
-  border: 3px solid #EAE8E5;
+  border: 3px solid #eae8e5;
 }
 
 #account-moldura {
-  background-color: #EAE8E5;
+  background-color: #eae8e5;
 }
 
 .box2 {
@@ -390,7 +392,7 @@ img {
   width: 100%;
   height: 0.7rem;
   border-radius: 0%;
-  background: linear-gradient(90deg, #4B4848 100%, #4B4848 0%);
+  background: linear-gradient(90deg, #4b4848 100%, #4b4848 0%);
   margin-bottom: 5%;
 }
 
@@ -403,7 +405,7 @@ img {
   border-radius: 0%;
   height: 0.7rem;
   width: 10%;
-  background-color: #8B8B8B;
+  background-color: #8b8b8b;
 }
 
 .imgs-container .slider::-webkit-slider-thumb:hover {
@@ -419,7 +421,7 @@ img {
   margin: 0;
   padding-left: 7px;
   align-content: baseline;
-  background-color: #4B4848;
+  background-color: #4b4848;
   overflow: hidden;
 }
 
@@ -434,7 +436,7 @@ img {
 }
 
 #imgs-moldura li {
-  background-color: #EAE8E5;
+  background-color: #eae8e5;
 }
 
 .imgs-container ul li img {
@@ -453,7 +455,7 @@ img {
   justify-content: center;
   align-content: center;
   flex-wrap: wrap;
-  background-color: #8B8B8B;
+  background-color: #8b8b8b;
   cursor: pointer;
 }
 
@@ -513,7 +515,7 @@ input[type="file"] {
   height: 80%;
   cursor: pointer;
   padding: 0%;
-  background-color: #EAE8E5;
+  background-color: #eae8e5;
 }
 
 #div-inputFile:hover {
@@ -542,8 +544,8 @@ input[type="file"] {
   transition: all 0.5s linear;
 }
 
-#carrinho-button{
-  background-color: #EAE8E5;
+#carrinho-button {
+  background-color: #eae8e5;
   overflow: hidden;
 }
 
@@ -561,7 +563,7 @@ input[type="file"] {
 #comprar-carrinho {
   height: 105%;
   width: auto;
-  background-color: #EAE8E5;
+  background-color: #eae8e5;
   transition: all 0.5s linear;
 }
 
@@ -576,7 +578,7 @@ input[type="file"] {
   align-content: center;
   flex-wrap: wrap;
   width: 47%;
-  color: #EAE8E5;
+  color: #eae8e5;
   z-index: 10;
 }
 
@@ -613,11 +615,11 @@ input[type="file"] {
 #box2-personagem > input {
   height: 40%;
   width: 90%;
-  background-color: #4B4848;
+  background-color: #4b4848;
   border-radius: 2rem;
   border: 0;
   padding: 0.7rem;
-  color: #EAE8E5;
+  color: #eae8e5;
   font-size: 1.2rem;
 }
 
@@ -637,7 +639,6 @@ input[type="file"] {
 #imgs-personagem li img {
   height: calc(100% - 2px);
   width: 3rem;
-  
 }
 
 #imgs-personagem li {
@@ -904,8 +905,12 @@ input[type="range"] {
 }
 
 @keyframes comprando {
-  from{justify-content: flex-start;}
-  to{justify-content: flex-end;}
+  from {
+    justify-content: flex-start;
+  }
+  to {
+    justify-content: flex-end;
+  }
 }
 
 @media (max-height: 1100px) {
@@ -975,7 +980,7 @@ input[type="range"] {
   input[type="range"]::-webkit-slider-runnable-track {
     height: 2.5rem;
   }
-  
+
   input[type="range"]::-webkit-slider-thumb {
     height: 2.5rem;
     width: 2.5rem;
@@ -985,7 +990,7 @@ input[type="range"] {
     width: 90%;
     height: 6rem;
   }
-  
+
   .logado h1 {
     font-size: 2.5rem;
   }
@@ -998,11 +1003,10 @@ input[type="range"] {
     height: 6rem;
   }
 
-  
   #div-inputFile label {
     font-size: 1rem;
   }
-  
+
   #comprar-carrinho {
     height: 105%;
   }
@@ -1046,20 +1050,20 @@ input[type="range"] {
     width: 100%;
     height: 0.5rem;
     border-radius: 0%;
-    background: linear-gradient(90deg, #4B4848 100%, #4B4848 0%);
+    background: linear-gradient(90deg, #4b4848 100%, #4b4848 0%);
     margin-bottom: 5%;
   }
-  
+
   .imgs-container .slider::-webkit-slider-runnable-track {
     height: 0.5rem;
     border-radius: 0%;
   }
-  
+
   .imgs-container .slider::-webkit-slider-thumb {
     border-radius: 0%;
     height: 0.5rem;
     width: 10%;
-    background-color: #8B8B8B;
+    background-color: #8b8b8b;
   }
 
   .bars {

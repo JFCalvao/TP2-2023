@@ -108,7 +108,7 @@ h1 {
   top: 2vh;
   left: calc(11vh - 1rem);
   transition: all 0.3s ease;
-  background: url("../imgs-personagens/personagemBrasil.png");
+  /* background: url("../imgs-personagens/personagemBrasil.png"); */
   background-size: cover;
   background-repeat: no-repeat;
   width: 2rem;

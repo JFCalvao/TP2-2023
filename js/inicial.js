@@ -117,7 +117,9 @@ function procuraUser() {
           userName.innerHTML = listaData.table.rows[localProcurar].c[0].v;
           moldura.src = listaData.table.rows[localProcurar].c[6].v;
           personagem.src = listaData.table.rows[localProcurar].c[7].v;
-          linkPuroPersonagem = listaData.table.rows[localProcurar].c[7].v;
+          let valPersonagem = personagem.src.split("/");
+          linkPuroPersonagem = valPersonagem[valPersonagem.length - 1];
+
           //edit perfil
           account_moldura.src = moldura.src;
           account_personagem.src = personagem.src;
@@ -174,6 +176,7 @@ function iniciaPerfil() {
     }%`;
     h3_musica.innerHTML = color + "%";
   }
+
   if (localStorage.VOLUME) {
     inputvolume.value = localStorage.getItem("VOLUME");
     let color = inputvolume.value;
@@ -184,16 +187,37 @@ function iniciaPerfil() {
     }%`;
     h3_volume.innerHTML = color + "%";
   }
-  if (linkPuroPersonagem === "imgs-personagens/personagemBrasil.png") {
-    localStorage.setItem("Brasil", linkPuroPersonagem);
+
+  switch(linkPuroPersonagem) {
+    case "personagemBrasil.png": 
+      localStorage.setItem("Brasil", "imgs-personagens/" + linkPuroPersonagem);
+      break;
+    case "sapoBaiano.png":
+      localStorage.setItem(
+        "SapoBaiano",
+        "imgs-personagens/" + linkPuroPersonagem
+      );
+      break;
+    default:
+      break;
   }
-  let easterEggImg = document.querySelector("#easterEgg img");
+
+  let easterEggBrasil = document.querySelector("#easterEggBrasil img");
   if (localStorage.Brasil) {
-    easterEggImg.style.pointerEvents = "all";
-    easterEggImg.src = localStorage.getItem("Brasil");
+    easterEggBrasil.style.pointerEvents = "all";
+    easterEggBrasil.src = localStorage.getItem("Brasil");
   } else {
-    easterEggImg.style.pointerEvents = "none";
+    easterEggBrasil.style.pointerEvents = "none";
   }
+
+  let easterEggSapoBaiano = document.querySelector("#easterEggSapoBaiano img");
+  if (localStorage.SapoBaiano) {
+    easterEggSapoBaiano.style.pointerEvents = "all";
+    easterEggSapoBaiano.src = localStorage.getItem("SapoBaiano");
+  } else {
+    easterEggSapoBaiano.style.pointerEvents = "none";
+  }
+
   h2_rank.innerHTML = statusPersonagem.rankExp + "/" + expMaxRank;
   log_h1.innerHTML = "DESLOGADO";
   logado.style.backgroundColor = "tomato";
@@ -421,7 +445,6 @@ function temaEscuro() {
 btn_play.addEventListener("click", function () {
   if (!localStorage.USUARIO) {
     errorAlert("Logue antes de tentar jogar!");
-    // window.alert("Logue antes de tentar jogar!");
     return;
   }
 
